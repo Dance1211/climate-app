@@ -13,6 +13,7 @@ const config = {
 		vite: {
 			resolve: {
 				alias: {
+					// Place future aliases here. They need to be mirrored in tsconfig.json
 					$components: path.resolve('./src/lib/components')
 				}
 			}
