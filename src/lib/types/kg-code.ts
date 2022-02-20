@@ -5,8 +5,8 @@ export type Coordinate = [latitude: number, longitude: number];
 export type KGCode =
 | 'Af'
 | 'Am'
-| 'Aw'
 | 'As'
+| 'Aw'
 | 'Bwh'
 | 'Bwk'
 | 'BSh'
