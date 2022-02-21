@@ -15,7 +15,6 @@ export async function runSeed(): Promise<void> {
 
 	try {
 		await seed(clientConnection, kgCodes);
-		console.log('Database seeded!');
 	} catch (error) {
 		console.log('Error seeding database!');
 		console.error(error);

@@ -8,6 +8,8 @@ export const seed = async (clientConnection: MongoClient, data: Array<KGCodeDB>)
 	await db.dropCollection(process.env['MONGODB_KGCODES']);
 	await db.createCollection(process.env['MONGODB_KGCODES']);
 
+	console.log('KG Codes db reset');
+
 	const kgCodeCollection: Collection<KGCodeDB> = db.collection(process.env['MONGODB_KGCODES']);
 
 	try {
@@ -16,8 +18,9 @@ export const seed = async (clientConnection: MongoClient, data: Array<KGCodeDB>)
 				return { insertOne: { document: singleKgCode } };
 			})
 		);
+		console.log('KG Codes collection seeded');
 	} catch (error) {
-    console.log(`Bulk upload failed`);
-    console.dir(error);
-  }
+		console.log(`Bulk upload failed`);
+		console.dir(error);
+	}
 };
