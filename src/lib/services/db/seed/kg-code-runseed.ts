@@ -4,7 +4,7 @@ import { seed } from './kg-code-seed';
 import type { KGCodeDB } from '$lib/types/kg-code';
 
 const formatTestData = ({ latitude, longitude, kgcode }): KGCodeDB => {
-	return { location: { type: 'Point', coordinates: [latitude, longitude] }, kgcode };
+	return { location: { type: 'Point', coordinates: [longitude, latitude] }, kgcode };
 };
 
 export async function runSeed(): Promise<void> {
