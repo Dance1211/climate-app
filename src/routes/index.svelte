@@ -1,6 +1,7 @@
 <script lang="ts">
-  import Greeting from "$components/greeting.svelte";
+	import GetWeather from '$lib/components/getWeather.svelte';
 </script>
 
-<h1>Weather app</h1>
-<Greeting/>
+<main>
+	<GetWeather />
+</main>
