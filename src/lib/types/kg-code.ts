@@ -1,8 +1,9 @@
 import type { ObjectId } from 'mongodb';
 
-export type Coordinate = [latitude: number, longitude: number];
+export type Coordinates = [latitude: number, longitude: number];
 
 export type KGCode =
+| null
 | 'Af'
 | 'Am'
 | 'As'
@@ -37,6 +38,6 @@ export type KGCode =
 
 export type KGCodeDB = {
 	_id?: ObjectId;
-	location: {type: string, coordinates: Coordinate}
+	location: {type: string, coordinates: Coordinates}
 	kgcode: KGCode;
 };
