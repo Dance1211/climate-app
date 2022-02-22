@@ -14,11 +14,15 @@ export const seed = async (
 	// Reset collection
 	try {
 		await db.dropCollection(process.env['MONGODB_KGCODES']);
+	} catch (error) {
+		console.log('Got an error dropping kg_codes');
 	} finally {
 		await db.createCollection(process.env['MONGODB_KGCODES']);
 	}
 	try {
 		await db.dropCollection(process.env['MONGODB_CITIES']);
+	} catch (error) {
+		console.log('Got an error dropping cities');
 	} finally {
 		await db.createCollection(process.env['MONGODB_CITIES']);
 	}
