@@ -7,20 +7,45 @@
 
 	let results;
 	let destinationName: string = '';
+	let predictionsArr;
 
+	// Input from user
 	let searchQuery: Query = {
 		location: '',
 		home: ''
 	};
+
+	// Co-ords received from geoCodingFetch
 	let locationRes: Loc = {
 		lat: null,
 		lng: null
 	};
 
-	const onSubmit = (): void => {
+	/* Event handlers */
+	// Changing the dropdown queries the API to get new co-ords
+	const onChange = (e): void => {
+		geoCodingFetch(e.target.value);
+	};
+
+	// Gets co-ords when user submits first form
+	const onInitialSubmit = (): void => {
 		placesAutoComplete();
 	};
 
+	// Go-to next page when user confirms correct location
+	const onConfirmSubmit = (): void => {
+		if (locationRes) {
+			const searchUrl = `/searchresults&lat=${locationRes.lat}&lng=${locationRes.lng}`;
+			goto(searchUrl);
+		} else {
+			// Error handling component here
+			console.log('invalid location result');
+		}
+	}
+
+	$: console.log(locationRes);
+
+	// Function to Google Maps API to autocomplete a full address from the user's input. Gets the place id and then calls geoCodingFetch to get the lat/long co-ords
 	function placesAutoComplete(): void {
 		const displaySuggestions = function (
 			predictions: google.maps.places.QueryAutocompletePrediction[] | null,
@@ -30,7 +55,7 @@
 				alert(status);
 				return;
 			}
-			console.log(predictions);
+			predictionsArr = predictions;
 			const place_id = predictions[0].place_id;
 			destinationName = predictions[0].description;
 			geoCodingFetch(place_id);
@@ -39,6 +64,7 @@
 		service.getPlacePredictions({ input: searchQuery.location }, displaySuggestions);
 	}
 
+	// Function to Google Geocoding API get lat/long co-ords from the place id that we got through placesAutoComplete
 	const geoCodingFetch = async (placeId: string) => {
 		const baseUrl = 'https://maps.googleapis.com/maps/api/geocode/json';
 		results = await axios.get(baseUrl, {
@@ -49,13 +75,6 @@
 		});
 		locationRes.lat = results.data.results[0].geometry.location.lat.toFixed();
 		locationRes.lng = results.data.results[0].geometry.location.lng.toFixed();
-
-		if (locationRes) {
-			const searchUrl = `/searchresults&lat=${locationRes.lat}&lng=${locationRes.lng}`;
-			goto(searchUrl);
-		} else {
-			console.log('invalid location result');
-		}
 	};
 </script>
 
@@ -68,7 +87,8 @@
 <main class="Search">
 	<h2>Compare travel destinations by climate.</h2>
 
-	<form on:submit|preventDefault={onSubmit}>
+	<!-- Input form -->
+	<form on:submit|preventDefault={onInitialSubmit}>
 		<div>
 			<label for="location">I like the weather in</label>
 			<input
@@ -97,10 +117,19 @@
 	</form>
 
 	{#if results}
-		<p>Your Search: {searchQuery.location}</p>
-		<p>Found Location: {destinationName}</p>
-		<p>Latitude: {locationRes.lat}</p>
-		<p>Longitude: {locationRes.lng}</p>
+	<!-- Confirmation of input form -->
+		<form on:submit|preventDefault={onConfirmSubmit}>
+			<p>Your Search: {searchQuery.location}</p>
+			<p>Did you mean...</p>
+			<select on:change={onChange}>
+				{#each predictionsArr as prediction (prediction.place_id)}
+					<option value={prediction.place_id}>{prediction.description}</option>
+				{/each}
+			</select>
+			<p>Latitude: {locationRes.lat}</p>
+			<p>Longitude: {locationRes.lng}</p>
+		<button disabled={!locationRes} type="submit">Search</button>
+		</form>
 	{/if}
 </main>
 
