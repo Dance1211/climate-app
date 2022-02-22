@@ -1,4 +1,4 @@
-import {kgSeedData, citySeedData} from './data';
+import { kgSeedData, citySeedData } from './data';
 import { clientPromise } from '../mongodb';
 import { seed } from './seed';
 import type { KGCodeDB } from '$lib/types/kg-code';
@@ -8,9 +8,26 @@ const formatKgData = ({ latitude, longitude, kgcode }): KGCodeDB => {
 	return { location: { type: 'Point', coordinates: [longitude, latitude] }, kgcode };
 };
 
-const formatCityData = ({city, city_ascii, lat, lng, country, iso2, iso3, population}): CityDB => {
-	return {location: {type: 'Point', coordinates: [lng, lat]}, city, city_ascii, country, iso2, iso3, population}
-}
+const formatCityData = ({
+	city,
+	city_ascii,
+	lat,
+	lng,
+	country,
+	iso2,
+	iso3,
+	population
+}): CityDB => {
+	return {
+		location: { type: 'Point', coordinates: [lng, lat] },
+		city,
+		city_ascii,
+		country,
+		iso2,
+		iso3,
+		population
+	};
+};
 
 export async function runSeed(): Promise<void> {
 	//Connection to Mongo is served as a promise so we have to wait to receive it
@@ -21,6 +38,7 @@ export async function runSeed(): Promise<void> {
 
 	try {
 		await seed(clientConnection, kgCodes, cities);
+		console.log('Seeding completed!');
 	} catch (error) {
 		console.log('Error seeding database!');
 		console.error(error);
