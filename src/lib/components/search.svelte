@@ -39,7 +39,7 @@
 		service.getPlacePredictions({ input: searchQuery.location }, displaySuggestions);
 	}
 
-	const geoCodingFetch = async (placeId) => {
+	const geoCodingFetch = async (placeId: string) => {
 		const baseUrl = 'https://maps.googleapis.com/maps/api/geocode/json';
 		results = await axios.get(baseUrl, {
 			params: {
@@ -47,8 +47,8 @@
 				place_id: placeId
 			}
 		});
-		locationRes.lat = results.data.results[0].geometry.location.lat;
-		locationRes.lng = results.data.results[0].geometry.location.lng;
+		locationRes.lat = results.data.results[0].geometry.location.lat.toFixed();
+		locationRes.lng = results.data.results[0].geometry.location.lng.toFixed();
 	};
 </script>
 
