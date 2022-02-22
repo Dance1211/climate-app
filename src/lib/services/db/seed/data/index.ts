@@ -1,4 +1,5 @@
 import _kgSeedData from './Koeppen-Geiger-Data.json';
+import _citySeedData from './worldcities.json';
 
 type KGImport = {
 	latitude: number;
@@ -6,42 +7,19 @@ type KGImport = {
 	kgcode: string;
 };
 
-const kgSeedData = _kgSeedData as KGImport[];
-
-const defaultTempData: KGImport[] = [
-	{
-		latitude: -25.25,
-		longitude: 46.75,
-		kgcode: 'Af'
-	},
-	{
-		latitude: -24.75,
-		longitude: 47.25,
-		kgcode: 'Af'
-	},
-	{
-		latitude: -24.25,
-		longitude: -47.25,
-		kgcode: 'Af'
-	},
-	{
-		latitude: -23.25,
-		longitude: -149.25,
-		kgcode: 'Af'
-	},
-	{
-		latitude: -23.25,
-		longitude: -134.75,
-		kgcode: 'Af'
-	}
-];
-
-const USE_TEMP_DATA = false;
-
-console.log(USE_TEMP_DATA ? "USING TEMP KG DATA" : "USING REAL KG DATA");
-
-function getKGData(): KGImport[] {
-	return USE_TEMP_DATA ? defaultTempData : kgSeedData;
+type CitiesImport = {
+	city: string;
+	city_ascii: string;
+	lat: number;
+	lng: number;
+	country: string;
+	iso2: string;
+	iso3: string;
+	admin_name: string;
+	capital: string;
+	population: number;
+	id: number;
 }
 
-export default getKGData;
+export const kgSeedData = _kgSeedData as KGImport[];
+export const citySeedData = _citySeedData as CitiesImport[];
