@@ -16,16 +16,17 @@
 		home: ''
 	};
 
-	// Co-ords received from geoCodingFetch
+	// Destination co-ords received from geoCodingFetch
 	let locationRes: Loc = {
 		lat: null,
 		lng: null
 	};
 
+	// User input co-ords from getCurrentPosition
 	let userLocation: Loc = {
 		lat: null,
 		lng: null
-	}
+	};
 	$: console.log(userLocation);
 
 	/* Event handlers */
@@ -92,8 +93,8 @@
 		}
 
 		function displayLocationInfo(position) {
-			userLocation.lat = position.coords.latitude;
-			userLocation.lng = position.coords.longitude;
+			userLocation.lat = position.coords.latitude.toFixed();
+			userLocation.lng = position.coords.longitude.toFixed();
 		}
 
 		function showError(error) {
@@ -153,7 +154,7 @@
 		<button disabled={!searchQuery.location} type="submit">Search</button>
 	</form>
 
-	<span id="locationError"></span>
+	<span id="locationError" />
 
 	{#if results}
 		<!-- Confirmation of input form -->
