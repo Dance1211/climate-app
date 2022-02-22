@@ -4,7 +4,7 @@
 	import { onMount } from 'svelte';
 	const apiKey = import.meta.env.VITE_API_KEY;
 	type Query = { location: string; home: string };
-	type Loc = { lat: number; lng: number };
+	type Coordinates = null | [lat: number, lng: number];
 
 	let results;
 	let destinationName: string = '';
@@ -16,23 +16,19 @@
 		home: ''
 	};
 
-	// Destination co-ords received from geoCodingFetch
-	let locationRes: Loc = {
-		lat: null,
-		lng: null
-	};
+	// Destination co-ords received from coordinateFetch
+	let locationRes: Coordinates = null;
 
 	// User input co-ords from getCurrentPosition
-	let userLocation: Loc = {
-		lat: null,
-		lng: null
-	};
-	$: console.log(userLocation);
+	let userLocation: Coordinates = null;
+
+	$: console.log(userLocation, 'userLocation');
+	$: console.log(locationRes, 'locationRes');
 
 	/* Event handlers */
 	// Changing the dropdown queries the API to get new co-ords
 	const onChange = (e): void => {
-		geoCodingFetch(e.target.value);
+		coordinateFetch(e.target.value);
 	};
 
 	// Gets co-ords when user submits first form
@@ -43,7 +39,7 @@
 	// Go-to next page when user confirms correct location
 	const onConfirmSubmit = (): void => {
 		if (locationRes) {
-			const searchUrl = `/searchresults&lat=${locationRes.lat}&lng=${locationRes.lng}`;
+			const searchUrl = `/searchresults&lat=${locationRes[0]}&lng=${locationRes[1]}`;
 			goto(searchUrl);
 		} else {
 			// Error handling component here
@@ -51,11 +47,9 @@
 		}
 	};
 
-	$: console.log(locationRes);
-
 	// Function to Google Maps API to autocomplete a full address from the user's input. Gets the place id and then calls geoCodingFetch to get the lat/long co-ords
-	function placesAutoComplete(): void {
-		const displaySuggestions = function (
+	async function placesAutoComplete(): Promise<void> {
+		const displaySuggestions = async function (
 			predictions: google.maps.places.QueryAutocompletePrediction[] | null,
 			status: google.maps.places.PlacesServiceStatus
 		) {
@@ -65,24 +59,18 @@
 			}
 			predictionsArr = predictions;
 			const place_id = predictions[0].place_id;
+			console.log(place_id, 'place id');
 			destinationName = predictions[0].description;
-			geoCodingFetch(place_id);
+			locationRes = await coordinateFetch(place_id);
 		};
 		const service = new google.maps.places.AutocompleteService();
 		service.getPlacePredictions({ input: searchQuery.location }, displaySuggestions);
 	}
 
 	// Function to Google Geocoding API get lat/long co-ords from the place id that we got through placesAutoComplete
-	const geoCodingFetch = async (placeId: string) => {
-		const baseUrl = 'https://maps.googleapis.com/maps/api/geocode/json';
-		results = await axios.get(baseUrl, {
-			params: {
-				key: apiKey,
-				place_id: placeId
-			}
-		});
-		locationRes.lat = results.data.results[0].geometry.location.lat.toFixed();
-		locationRes.lng = results.data.results[0].geometry.location.lng.toFixed();
+	const coordinateFetch = async (place_id) => {
+		const res = await axios.get(`/api/latlng/${place_id}`);
+		return res.data.coordinates;
 	};
 
 	// When the page loads, get the user position
@@ -93,8 +81,7 @@
 		}
 
 		function displayLocationInfo(position) {
-			userLocation.lat = position.coords.latitude.toFixed();
-			userLocation.lng = position.coords.longitude.toFixed();
+			userLocation = [+position.coords.latitude.toFixed(), +position.coords.longitude.toFixed()];
 		}
 
 		function showError(error) {
@@ -166,16 +153,16 @@
 					<option value={prediction.place_id}>{prediction.description}</option>
 				{/each}
 			</select>
-			<p>Latitude: {locationRes.lat}</p>
-			<p>Longitude: {locationRes.lng}</p>
+			<p>Latitude: {locationRes[0]}</p>
+			<p>Longitude: {locationRes[1]}</p>
 			<button disabled={!locationRes} type="submit">Search</button>
 		</form>
 	{/if}
 
 	{#if userLocation}
-	<p>User Location</p>
-	<p>Latitude: {userLocation.lat}</p>
-	<p>Longitude: {userLocation.lng}</p>
+		<p>User Location</p>
+		<p>Latitude: {userLocation[0]}</p>
+		<p>Longitude: {userLocation[1]}</p>
 	{/if}
 </main>
 
