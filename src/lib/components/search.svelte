@@ -1,6 +1,7 @@
 <script lang="ts">
 	import axios from 'axios';
 	import { goto } from '$app/navigation';
+	import { onMount } from 'svelte';
 	const apiKey = import.meta.env.VITE_API_KEY;
 	type Query = { location: string; home: string };
 	type Loc = { lat: number; lng: number };
@@ -20,6 +21,12 @@
 		lat: null,
 		lng: null
 	};
+
+	let userLocation: Loc = {
+		lat: null,
+		lng: null
+	}
+	$: console.log(userLocation);
 
 	/* Event handlers */
 	// Changing the dropdown queries the API to get new co-ords
@@ -41,7 +48,7 @@
 			// Error handling component here
 			console.log('invalid location result');
 		}
-	}
+	};
 
 	$: console.log(locationRes);
 
@@ -76,6 +83,36 @@
 		locationRes.lat = results.data.results[0].geometry.location.lat.toFixed();
 		locationRes.lng = results.data.results[0].geometry.location.lng.toFixed();
 	};
+
+	// When the page loads, get the user position
+	onMount(async () => {
+		let errorBox = document.getElementById('locationError');
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(displayLocationInfo, showError);
+		}
+
+		function displayLocationInfo(position) {
+			userLocation.lat = position.coords.latitude;
+			userLocation.lng = position.coords.longitude;
+		}
+
+		function showError(error) {
+			switch (error.code) {
+				case error.PERMISSION_DENIED:
+					errorBox.innerHTML = 'User denied the request for Geolocation.';
+					break;
+				case error.POSITION_UNAVAILABLE:
+					errorBox.innerHTML = 'Location information is unavailable.';
+					break;
+				case error.TIMEOUT:
+					errorBox.innerHTML = 'The request to get user location timed out.';
+					break;
+				case error.UNKNOWN_ERROR:
+					errorBox.innerHTML = 'An unknown error occurred.';
+					break;
+			}
+		}
+	});
 </script>
 
 <svelte:head>
@@ -116,8 +153,10 @@
 		<button disabled={!searchQuery.location} type="submit">Search</button>
 	</form>
 
+	<span id="locationError"></span>
+
 	{#if results}
-	<!-- Confirmation of input form -->
+		<!-- Confirmation of input form -->
 		<form on:submit|preventDefault={onConfirmSubmit}>
 			<p>Your Search: {searchQuery.location}</p>
 			<p>Did you mean...</p>
@@ -128,7 +167,7 @@
 			</select>
 			<p>Latitude: {locationRes.lat}</p>
 			<p>Longitude: {locationRes.lng}</p>
-		<button disabled={!locationRes} type="submit">Search</button>
+			<button disabled={!locationRes} type="submit">Search</button>
 		</form>
 	{/if}
 </main>
