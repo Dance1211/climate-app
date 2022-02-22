@@ -1,9 +1,8 @@
 import type { Collection, Db, MongoClient } from 'mongodb';
-import type { Coordinate, KGCode } from '$lib/types/kg-code';
+import type { Coordinates, KGCode } from '$lib/types/kg-code';
 import { clientPromise } from '$lib/services/db/mongodb';
 
-export async function getNearestKGCode([longitude, latitude]: Coordinate): Promise<KGCode> {
-	console.log(longitude, latitude);
+export async function getNearestKGCode([longitude, latitude]: Coordinates): Promise<KGCode> {
 	const clientConnection: MongoClient = await clientPromise;
 	const db: Db = clientConnection.db(process.env['MONGODB_DB_LOCATIONS']);
 	const kgCodeCollection: Collection = db.collection(process.env['MONGODB_KGCODES']);
