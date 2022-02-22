@@ -6,7 +6,18 @@ export async function get({ url }: LoadInput) {
 	const longitude: number = +url.searchParams.get('longitude');
 	const latitude: number = +url.searchParams.get('latitude');
 
-	const kgCode: KGCode = await getNearestKGCode([longitude, latitude]);
+	let kgCode: KGCode;
+
+	try {
+		kgCode = await getNearestKGCode([longitude, latitude]);
+	} catch (error) {
+		return {
+			status: 500,
+			body: {
+				error
+			}
+		};
+	}
 
 	return {
 		status: 200,
@@ -15,4 +26,3 @@ export async function get({ url }: LoadInput) {
 		}
 	};
 }
-
