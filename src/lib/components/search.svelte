@@ -10,6 +10,7 @@
 	let destinationName: string = '';
 	let predictionsArr;
 
+	$: console.log(predictionsArr, 'predictionsArr');
 	// Input from user
 	let searchQuery: Query = {
 		location: '',
@@ -17,13 +18,12 @@
 	};
 
 	// Destination co-ords received from coordinateFetch
-	let locationRes: Coordinates = null;
+	let destinationLocation: Coordinates = null;
 
 	// User input co-ords from getCurrentPosition
 	let userLocation: Coordinates = null;
 
-	$: console.log(userLocation, 'userLocation');
-	$: console.log(locationRes, 'locationRes');
+	$: console.log(destinationLocation, 'destinationLocation');
 
 	/* Event handlers */
 	// Changing the dropdown queries the API to get new co-ords
@@ -32,14 +32,17 @@
 	};
 
 	// Gets co-ords when user submits first form
-	const onInitialSubmit = (): void => {
-		placesAutoComplete();
+	const onInitialSubmit = async (): Promise<void> => {
+		const { place_id, predictions } = await placeIdFetch();
+		predictionsArr = predictions;
+		console.log(place_id, 'placeid');
+		destinationLocation = await coordinateFetch(place_id);
 	};
 
 	// Go-to next page when user confirms correct location
 	const onConfirmSubmit = (): void => {
-		if (locationRes) {
-			const searchUrl = `/searchresults&lat=${locationRes[0]}&lng=${locationRes[1]}`;
+		if (destinationLocation) {
+			const searchUrl = `/searchresults&lat=${destinationLocation[0]}&lng=${destinationLocation[1]}`;
 			goto(searchUrl);
 		} else {
 			// Error handling component here
@@ -48,24 +51,12 @@
 	};
 
 	// Function to Google Maps API to autocomplete a full address from the user's input. Gets the place id and then calls geoCodingFetch to get the lat/long co-ords
-	async function placesAutoComplete(): Promise<void> {
-		const displaySuggestions = async function (
-			predictions: google.maps.places.QueryAutocompletePrediction[] | null,
-			status: google.maps.places.PlacesServiceStatus
-		) {
-			if (status != google.maps.places.PlacesServiceStatus.OK || !predictions) {
-				alert(status);
-				return;
-			}
-			predictionsArr = predictions;
-			const place_id = predictions[0].place_id;
-			console.log(place_id, 'place id');
-			destinationName = predictions[0].description;
-			locationRes = await coordinateFetch(place_id);
-		};
-		const service = new google.maps.places.AutocompleteService();
-		service.getPlacePredictions({ input: searchQuery.location }, displaySuggestions);
-	}
+	const placeIdFetch = async () => {
+		const res = await axios.get(`/api/destination/${searchQuery.location}`);
+		const place_id = res.data.place_id;
+		const predictions = res.data.predictions;
+		return { place_id, predictions };
+	};
 
 	// Function to Google Geocoding API get lat/long co-ords from the place id that we got through placesAutoComplete
 	const coordinateFetch = async (place_id) => {
@@ -81,7 +72,7 @@
 		}
 
 		function displayLocationInfo(position) {
-			userLocation = [+position.coords.latitude.toFixed(), +position.coords.longitude.toFixed()];
+			userLocation = [+position.coords.latitude.toFixed(5), +position.coords.longitude.toFixed(5)];
 		}
 
 		function showError(error) {
@@ -105,8 +96,6 @@
 
 <svelte:head>
 	<title>Climate Travel App</title>
-	<script async src={`https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`}>
-	</script>
 </svelte:head>
 
 <main class="Search">
@@ -143,19 +132,19 @@
 
 	<span id="locationError" />
 
-	{#if results}
+	{#if destinationLocation}
 		<!-- Confirmation of input form -->
 		<form on:submit|preventDefault={onConfirmSubmit}>
 			<p>Your Search: {searchQuery.location}</p>
 			<p>Did you mean...</p>
 			<select on:change={onChange}>
 				{#each predictionsArr as prediction (prediction.place_id)}
-					<option value={prediction.place_id}>{prediction.description}</option>
+					<option value={prediction.place_id}>{prediction.placeName}</option>
 				{/each}
 			</select>
-			<p>Latitude: {locationRes[0]}</p>
-			<p>Longitude: {locationRes[1]}</p>
-			<button disabled={!locationRes} type="submit">Search</button>
+			<p>Latitude: {destinationLocation[0]}</p>
+			<p>Longitude: {destinationLocation[1]}</p>
+			<button disabled={!destinationLocation} type="submit">Search</button>
 		</form>
 	{/if}
 
@@ -163,6 +152,8 @@
 		<p>User Location</p>
 		<p>Latitude: {userLocation[0]}</p>
 		<p>Longitude: {userLocation[1]}</p>
+	{:else}
+		<p>Please enable location</p>
 	{/if}
 </main>
 
