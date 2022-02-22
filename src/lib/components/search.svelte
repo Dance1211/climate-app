@@ -1,9 +1,9 @@
 <script lang="ts">
 	import axios from 'axios';
+	import { goto } from '$app/navigation';
 	const apiKey = import.meta.env.VITE_API_KEY;
 	type Query = { location: string; home: string };
 	type Loc = { lat: number; lng: number };
-	const mapsUrl = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
 
 	let results;
 	let destinationName: string = '';
@@ -49,12 +49,19 @@
 		});
 		locationRes.lat = results.data.results[0].geometry.location.lat.toFixed();
 		locationRes.lng = results.data.results[0].geometry.location.lng.toFixed();
+
+		if (locationRes) {
+			const searchUrl = `/searchresults&lat=${locationRes.lat}&lng=${locationRes.lng}`;
+			goto(searchUrl);
+		} else {
+			console.log('invalid location result');
+		}
 	};
 </script>
 
 <svelte:head>
 	<title>Climate Travel App</title>
-	<script async src={mapsUrl}>
+	<script async src={`https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`}>
 	</script>
 </svelte:head>
 
