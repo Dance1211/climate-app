@@ -171,6 +171,12 @@
 			<button disabled={!locationRes} type="submit">Search</button>
 		</form>
 	{/if}
+
+	{#if userLocation}
+	<p>User Location</p>
+	<p>Latitude: {userLocation.lat}</p>
+	<p>Longitude: {userLocation.lng}</p>
+	{/if}
 </main>
 
 <style>
