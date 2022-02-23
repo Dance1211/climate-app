@@ -69,29 +69,16 @@ export const seed = async (
 		console.error(error);
 	}
 
-	// Add codes to each city. This is slow and there could be a better way
-	// ... but it works!
-	// let progress = 0;
-	// console.log('Starting kgcode mapping');
-	// await cityCollection.find().forEach((cityDoc) => {
-	// 	kgCodeCollection
-	// 		.findOne({
-	// 			location: { $near: { $geometry: cityDoc.location } }
-	// 		})
-	// 		.then((kgDoc) => {
-	// 			return cityCollection.updateOne({ _id: cityDoc._id }, { $set: { kgcode: kgDoc.kgcode } });
-	// 		})
-	// 		.then(() => {
-	// 			progress++;
-	// 			progress % 100 && console.log(`${progress} / ${cityData.length}`);
-	// 		})
-	// 		.catch((err) => {
-	// 			console.log('Got an error updating cities with kgcodes');
-	// 			console.log(err);
-	// 		});
-	// });
 
 	// Add indexing for the city codes
+
+	try {
+		const cityCodeIndex = await cityCollection.createIndex({ location: '2dsphere' });
+		console.log(`Created index: ${cityCodeIndex}`);
+	} catch (error) {
+		console.log(`Failed creating index`);
+		console.error(error);
+	}
 
 	try {
 		const cityCodeIndex = await cityCollection.createIndex({ kgcode: 1 });
