@@ -20,8 +20,8 @@
 	// Destination co-ords received from coordinateFetch
 	let destinationLocation: Coordinates = null;
 
-	// User input co-ords from getCurrentPosition
-	let userLocation: Coordinates = null;
+	// User input co-ords from getCurrentPosition - default is set to Manchester
+	let userLocation: Coordinates = [53.48076, -2.24263];
 
 	$: console.log(destinationLocation, 'destinationLocation');
 
@@ -77,16 +77,16 @@
 		function showError(error) {
 			switch (error.code) {
 				case error.PERMISSION_DENIED:
-					errorBox.innerHTML = 'User denied the request for Geolocation.';
+					errorBox.innerHTML = 'User denied the request for Geolocation - default location is set to manchester.';
 					break;
 				case error.POSITION_UNAVAILABLE:
-					errorBox.innerHTML = 'Location information is unavailable.';
+					errorBox.innerHTML = 'Location information is unavailable - default location is set to manchester.';
 					break;
 				case error.TIMEOUT:
-					errorBox.innerHTML = 'The request to get user location timed out.';
+					errorBox.innerHTML = 'The request to get user location timed out - default location is set to manchester.';
 					break;
 				case error.UNKNOWN_ERROR:
-					errorBox.innerHTML = 'An unknown error occurred.';
+					errorBox.innerHTML = 'An unknown error occurred - default location is set to manchester.';
 					break;
 			}
 		}
