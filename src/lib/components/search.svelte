@@ -3,18 +3,15 @@
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
 	const apiKey = import.meta.env.VITE_API_KEY;
-	type Query = { location: string; home: string };
+	type Query = { location: string;};
 	type Coordinates = null | [lat: number, lng: number];
 
-	let results;
-	let destinationName: string = '';
 	let predictionsArr;
 
 	$: console.log(predictionsArr, 'predictionsArr');
 	// Input from user
 	let searchQuery: Query = {
 		location: '',
-		home: ''
 	};
 
 	// Destination co-ords received from coordinateFetch
@@ -49,6 +46,36 @@
 		}
 	};
 
+
+	const getUserLocation = (): void => {
+		let errorBox = document.getElementById('locationError');
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(displayLocationInfo, showError);
+		}
+
+		function displayLocationInfo(position) {
+			userLocation = [+position.coords.latitude.toFixed(5), +position.coords.longitude.toFixed(5)];
+		}
+
+		function showError(error) {
+			switch (error.code) {
+				case error.PERMISSION_DENIED:
+					errorBox.innerHTML = 'User denied the request for Geolocation - default location is set to Manchester.';
+					break;
+				case error.POSITION_UNAVAILABLE:
+					errorBox.innerHTML = 'Location information is unavailable - default location is set to Manchester.';
+					break;
+				case error.TIMEOUT:
+					errorBox.innerHTML = 'The request to get user location timed out - default location is set to Manchester.';
+					break;
+				case error.UNKNOWN_ERROR:
+					errorBox.innerHTML = 'An unknown error occurred - default location is set to Manchester.';
+					break;
+			}
+		}
+	}
+
+
 	// Function to Google Maps API to autocomplete a full address from the user's input. Gets the place id and then calls geoCodingFetch to get the lat/long co-ords
 	const placeIdFetch = async () => {
 		const res = await axios.get(`/api/destination/${searchQuery.location}`);
@@ -63,34 +90,6 @@
 		return res.data.coordinates;
 	};
 
-	// When the page loads, get the user position
-	onMount(async () => {
-		let errorBox = document.getElementById('locationError');
-		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(displayLocationInfo, showError);
-		}
-
-		function displayLocationInfo(position) {
-			userLocation = [+position.coords.latitude.toFixed(5), +position.coords.longitude.toFixed(5)];
-		}
-
-		function showError(error) {
-			switch (error.code) {
-				case error.PERMISSION_DENIED:
-					errorBox.innerHTML = 'User denied the request for Geolocation - default location is set to manchester.';
-					break;
-				case error.POSITION_UNAVAILABLE:
-					errorBox.innerHTML = 'Location information is unavailable - default location is set to manchester.';
-					break;
-				case error.TIMEOUT:
-					errorBox.innerHTML = 'The request to get user location timed out - default location is set to manchester.';
-					break;
-				case error.UNKNOWN_ERROR:
-					errorBox.innerHTML = 'An unknown error occurred - default location is set to manchester.';
-					break;
-			}
-		}
-	});
 </script>
 
 <svelte:head>
@@ -116,17 +115,8 @@
 		{#if !searchQuery.location}
 			<p class="warning">Please enter a location to search.</p>
 		{/if}
-		<div>
-			<label for="home">My location is</label>
-			<input
-				type="text"
-				name="home"
-				id="home"
-				bind:value={searchQuery.home}
-				placeholder="City or town..."
-			/>
-		</div>
-		<button disabled={!searchQuery.location} type="submit">Search</button>
+			<button on:click|once={getUserLocation} type="button">Get my location</button>
+			<button type="submit">Submit</button>
 	</form>
 
 	<span id="locationError" />
@@ -151,8 +141,6 @@
 		<p>User Location</p>
 		<p>Latitude: {userLocation[0]}</p>
 		<p>Longitude: {userLocation[1]}</p>
-	{:else}
-		<p>Please enable location</p>
 	{/if}
 </main>
 
