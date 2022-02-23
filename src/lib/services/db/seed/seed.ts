@@ -1,5 +1,5 @@
 import type { CityDB } from '$lib/types/cities';
-import type { KGCodeDB } from '$lib/types/kg-code';
+import type { Coordinates, KGCode, KGCodeDB } from '$lib/types/kg-code';
 import type { Collection, Db, MongoClient } from 'mongodb';
 
 export const seed = async (
@@ -33,7 +33,7 @@ export const seed = async (
 
 	const cityCollection: Collection<CityDB> = db.collection(process.env['MONGODB_CITIES']);
 
-	// Seed the database with data
+	// Seed the database with KGCode data
 	try {
 		await kgCodeCollection.bulkWrite(
 			kgData.map((singleKgCode) => {
@@ -45,6 +45,8 @@ export const seed = async (
 		console.log(`Bulk upload failed`);
 		console.error(error);
 	}
+
+	// TODO: add the kg code for each city.
 
 	try {
 		await cityCollection.bulkWrite(
@@ -60,8 +62,40 @@ export const seed = async (
 
 	// Create an index for fast queries
 	try {
-		const index = await kgCodeCollection.createIndex({ location: '2dsphere' });
-		console.log(`Created index: ${index}`);
+		const codeGeoindex = await kgCodeCollection.createIndex({ location: '2dsphere' });
+		console.log(`Created index: ${codeGeoindex}`);
+	} catch (error) {
+		console.log(`Failed creating index`);
+		console.error(error);
+	}
+
+	// Add codes to each city. This is slow and there could be a better way
+	// ... but it works!
+	// let progress = 0;
+	// console.log('Starting kgcode mapping');
+	// await cityCollection.find().forEach((cityDoc) => {
+	// 	kgCodeCollection
+	// 		.findOne({
+	// 			location: { $near: { $geometry: cityDoc.location } }
+	// 		})
+	// 		.then((kgDoc) => {
+	// 			return cityCollection.updateOne({ _id: cityDoc._id }, { $set: { kgcode: kgDoc.kgcode } });
+	// 		})
+	// 		.then(() => {
+	// 			progress++;
+	// 			progress % 100 && console.log(`${progress} / ${cityData.length}`);
+	// 		})
+	// 		.catch((err) => {
+	// 			console.log('Got an error updating cities with kgcodes');
+	// 			console.log(err);
+	// 		});
+	// });
+
+	// Add indexing for the city codes
+
+	try {
+		const cityCodeIndex = await cityCollection.createIndex({ kgcode: 1 });
+		console.log(`Created index: ${cityCodeIndex}`);
 	} catch (error) {
 		console.log(`Failed creating index`);
 		console.error(error);
