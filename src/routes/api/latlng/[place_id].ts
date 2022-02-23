@@ -11,13 +11,14 @@ export async function get({ params }) {
 				place_id: place_id
 			}
 		});
-		const address = res.data.results[0].formatted_address;
-		const country = address.split(', ').pop();
+
+		const address = res.data.results[0].address_components;
+		const [country] = address.filter((place) => place.types.includes('country'));
 		const lat = +res.data.results[0].geometry.location.lat.toFixed(5);
 		const lng = +res.data.results[0].geometry.location.lng.toFixed(5);
 		return {
 			status: 200,
-			body: { coordinates: [lat, lng], country }
+			body: { coordinates: [lat, lng], country: country.short_name }
 		};
 	} catch (err) {
 		return {
