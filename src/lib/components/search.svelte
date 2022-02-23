@@ -5,6 +5,8 @@
 	type Coordinates = null | [lat: number, lng: number];
 
 	let predictionsArr;
+	let countryCode = '';
+	let placeId = '';
 
 	// Input from user
 	let locationInput: string = '';
@@ -18,20 +20,19 @@
 	/* Event handlers */
 	// Gets co-ords when user submits first form
 	const onInitialSubmit = async (): Promise<void> => {
-		const { place_id, predictions } = await placeIdFetch();
-		predictionsArr = predictions;
-		destinationLocation = await coordinateFetch(place_id);
+		await placeIdFetch();
+		await coordinateFetch(placeId);
 	};
 
 	// Changing the dropdown queries the API to get new co-ords
 	const onChange = async (e): Promise<void> => {
-		destinationLocation = await coordinateFetch(e.target.value);
+		await coordinateFetch(e.target.value);
 	};
 
 	// Go-to next page when user confirms correct location
 	const onConfirmSubmit = (): void => {
 		if (destinationLocation) {
-			const searchUrl = `/searchresults&lat=${destinationLocation[0]}&lng=${destinationLocation[1]}&userlat=${userLocation[0]}&userlng=${userLocation[1]}`;
+			const searchUrl = `/searchresults&lat=${destinationLocation[0]}&lng=${destinationLocation[1]}&country=${countryCode}&userlat=${userLocation[0]}&userlng=${userLocation[1]}`;
 			goto(searchUrl);
 		} else {
 			// Error handling component here
@@ -76,15 +77,17 @@
 	// Function to Google Maps API to autocomplete a full address from the user's input. Gets the place id and then calls geoCodingFetch to get the lat/long co-ords
 	const placeIdFetch = async () => {
 		const res = await axios.get(`/api/destination/${locationInput}`);
-		const place_id = res.data.place_id;
-		const predictions = res.data.predictions;
-		return { place_id, predictions };
+		const { place_id, predictions } = res.data;
+		placeId = place_id;
+		predictionsArr = predictions;
 	};
 
 	// Function to Google Geocoding API get lat/long co-ords from the place id that we got through placesAutoComplete
-	const coordinateFetch = async (place_id) => {
-		const res = await axios.get(`/api/latlng/${place_id}`);
-		return res.data.coordinates;
+	const coordinateFetch = async (place: string): Promise<void> => {
+		const res = await axios.get(`/api/latlng/${place}`);
+		const { coordinates, country } = res.data;
+		destinationLocation = coordinates;
+		countryCode = country;
 	};
 </script>
 
