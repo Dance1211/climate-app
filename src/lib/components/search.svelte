@@ -1,26 +1,19 @@
 <script lang="ts">
 	import axios from 'axios';
 	import { goto } from '$app/navigation';
-	import { onMount } from 'svelte';
 	const apiKey = import.meta.env.VITE_API_KEY;
-	type Query = { location: string;};
 	type Coordinates = null | [lat: number, lng: number];
 
 	let predictionsArr;
 
-	$: console.log(predictionsArr, 'predictionsArr');
 	// Input from user
-	let searchQuery: Query = {
-		location: '',
-	};
+	let location: string = '';
 
 	// Destination co-ords received from coordinateFetch
 	let destinationLocation: Coordinates = null;
 
 	// User input co-ords from getCurrentPosition - default is set to Manchester
 	let userLocation: Coordinates = [53.48076, -2.24263];
-
-	$: console.log(destinationLocation, 'destinationLocation');
 
 	/* Event handlers */
 	// Changing the dropdown queries the API to get new co-ords
@@ -38,7 +31,7 @@
 	// Go-to next page when user confirms correct location
 	const onConfirmSubmit = (): void => {
 		if (destinationLocation) {
-			const searchUrl = `/searchresults&lat=${destinationLocation[0]}&lng=${destinationLocation[1]}`;
+			const searchUrl = `/searchresults&lat=${destinationLocation[0]}&lng=${destinationLocation[1]}&userlat=${userLocation[0]}&userlng=${userLocation[1]}`;
 			goto(searchUrl);
 		} else {
 			// Error handling component here
@@ -46,39 +39,43 @@
 		}
 	};
 
-
-	const getUserLocation = (): void => {
-		let errorBox = document.getElementById('locationError');
+	// Sets user location on button click
+	const onUserLocation = (): void => {
+		let locationBox = document.getElementById('locationBox');
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(displayLocationInfo, showError);
 		}
 
 		function displayLocationInfo(position) {
 			userLocation = [+position.coords.latitude.toFixed(5), +position.coords.longitude.toFixed(5)];
+			locationBox.innerHTML = 'User location set.';
 		}
 
 		function showError(error) {
 			switch (error.code) {
 				case error.PERMISSION_DENIED:
-					errorBox.innerHTML = 'User denied the request for Geolocation - default location is set to Manchester.';
+					locationBox.innerHTML =
+						'User denied the request for Geolocation - default location is set to Manchester.';
 					break;
 				case error.POSITION_UNAVAILABLE:
-					errorBox.innerHTML = 'Location information is unavailable - default location is set to Manchester.';
+					locationBox.innerHTML =
+						'Location information is unavailable - default location is set to Manchester.';
 					break;
 				case error.TIMEOUT:
-					errorBox.innerHTML = 'The request to get user location timed out - default location is set to Manchester.';
+					locationBox.innerHTML =
+						'The request to get user location timed out - default location is set to Manchester.';
 					break;
 				case error.UNKNOWN_ERROR:
-					errorBox.innerHTML = 'An unknown error occurred - default location is set to Manchester.';
+					locationBox.innerHTML =
+						'An unknown error occurred - default location is set to Manchester.';
 					break;
 			}
 		}
-	}
-
+	};
 
 	// Function to Google Maps API to autocomplete a full address from the user's input. Gets the place id and then calls geoCodingFetch to get the lat/long co-ords
 	const placeIdFetch = async () => {
-		const res = await axios.get(`/api/destination/${searchQuery.location}`);
+		const res = await axios.get(`/api/destination/${location}`);
 		const place_id = res.data.place_id;
 		const predictions = res.data.predictions;
 		return { place_id, predictions };
@@ -89,7 +86,6 @@
 		const res = await axios.get(`/api/latlng/${place_id}`);
 		return res.data.coordinates;
 	};
-
 </script>
 
 <svelte:head>
@@ -107,24 +103,23 @@
 				type="text"
 				name="location"
 				id="location"
-				bind:value={searchQuery.location}
+				bind:value={location}
 				placeholder="City, country or town..."
 				required
 			/>
 		</div>
-		{#if !searchQuery.location}
+		{#if !location}
 			<p class="warning">Please enter a location to search.</p>
 		{/if}
-			<button on:click|once={getUserLocation} type="button">Get my location</button>
-			<button type="submit">Submit</button>
+		<button on:click|once={onUserLocation} type="button">Get my location</button>
+		<span id="locationBox" />
+		<button type="submit">Submit</button>
 	</form>
-
-	<span id="locationError" />
 
 	{#if destinationLocation}
 		<!-- Confirmation of input form -->
 		<form on:submit|preventDefault={onConfirmSubmit}>
-			<p>Your Search: {searchQuery.location}</p>
+			<p>Your Search: {location}</p>
 			<p>Did you mean...</p>
 			<select on:change={onChange}>
 				{#each predictionsArr as prediction (prediction.place_id)}
@@ -135,12 +130,6 @@
 			<p>Longitude: {destinationLocation[1]}</p>
 			<button disabled={!destinationLocation} type="submit">Search</button>
 		</form>
-	{/if}
-
-	{#if userLocation}
-		<p>User Location</p>
-		<p>Latitude: {userLocation[0]}</p>
-		<p>Longitude: {userLocation[1]}</p>
 	{/if}
 </main>
 
