@@ -7,7 +7,7 @@
 	let predictionsArr;
 
 	// Input from user
-	let location: string = '';
+	let locationInput: string = '';
 
 	// Destination co-ords received from coordinateFetch
 	let destinationLocation: Coordinates = null;
@@ -16,16 +16,16 @@
 	let userLocation: Coordinates = [53.48076, -2.24263];
 
 	/* Event handlers */
-	// Changing the dropdown queries the API to get new co-ords
-	const onChange = async (e): Promise<void> => {
-		destinationLocation = await coordinateFetch(e.target.value);
-	};
-
 	// Gets co-ords when user submits first form
 	const onInitialSubmit = async (): Promise<void> => {
 		const { place_id, predictions } = await placeIdFetch();
 		predictionsArr = predictions;
 		destinationLocation = await coordinateFetch(place_id);
+	};
+
+	// Changing the dropdown queries the API to get new co-ords
+	const onChange = async (e): Promise<void> => {
+		destinationLocation = await coordinateFetch(e.target.value);
 	};
 
 	// Go-to next page when user confirms correct location
@@ -75,7 +75,7 @@
 
 	// Function to Google Maps API to autocomplete a full address from the user's input. Gets the place id and then calls geoCodingFetch to get the lat/long co-ords
 	const placeIdFetch = async () => {
-		const res = await axios.get(`/api/destination/${location}`);
+		const res = await axios.get(`/api/destination/${locationInput}`);
 		const place_id = res.data.place_id;
 		const predictions = res.data.predictions;
 		return { place_id, predictions };
@@ -103,12 +103,12 @@
 				type="text"
 				name="location"
 				id="location"
-				bind:value={location}
+				bind:value={locationInput}
 				placeholder="City, country or town..."
 				required
 			/>
 		</div>
-		{#if !location}
+		{#if !locationInput}
 			<p class="warning">Please enter a location to search.</p>
 		{/if}
 		<button on:click|once={onUserLocation} type="button">Get my location</button>
@@ -119,7 +119,7 @@
 	{#if destinationLocation}
 		<!-- Confirmation of input form -->
 		<form on:submit|preventDefault={onConfirmSubmit}>
-			<p>Your Search: {location}</p>
+			<p>Your Search: {locationInput}</p>
 			<p>Did you mean...</p>
 			<select on:change={onChange}>
 				{#each predictionsArr as prediction (prediction.place_id)}
