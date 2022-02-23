@@ -27,15 +27,14 @@
 
 	/* Event handlers */
 	// Changing the dropdown queries the API to get new co-ords
-	const onChange = (e): void => {
-		coordinateFetch(e.target.value);
+	const onChange = async (e): Promise<void> => {
+		destinationLocation = await coordinateFetch(e.target.value);
 	};
 
 	// Gets co-ords when user submits first form
 	const onInitialSubmit = async (): Promise<void> => {
 		const { place_id, predictions } = await placeIdFetch();
 		predictionsArr = predictions;
-		console.log(place_id, 'placeid');
 		destinationLocation = await coordinateFetch(place_id);
 	};
 
