@@ -131,7 +131,7 @@
 
 	<span id="locationError" />
 
-	<!-- {#if destinationLocation}
+	{#if destinationLocation}
 		<form on:submit|preventDefault={onConfirmSubmit}>
 			<p>Your Search: {searchQuery.location}</p>
 			<p>Did you mean...</p>
@@ -144,7 +144,7 @@
 			<p>Latitude: {destinationLocation[1]}</p>
 			<button disabled={!destinationLocation} type="submit">Search</button>
 		</form>
-	{/if} -->
+	{/if}
 
 	<!-- {#if userLocation}
 		<p>User Location</p>
@@ -157,6 +157,7 @@
 
 <style>
 	.container {
+		z-index: 0;
 		display: grid;
 		width: 90%;
 		max-width: 600px;
