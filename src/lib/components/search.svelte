@@ -2,9 +2,8 @@
 	import axios from 'axios';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
-	const apiKey = import.meta.env.VITE_API_KEY;
 	type Query = { location: string; home: string };
-	type Coordinates = null | [lat: number, lng: number];
+	type Coordinates = [lng: number, lat: number];
 
 	let results;
 	let destinationName: string = '';
@@ -18,10 +17,10 @@
 	};
 
 	// Destination co-ords received from coordinateFetch
-	let destinationLocation: Coordinates = null;
+	let destinationLocation: null | Coordinates = null;
 
 	// User input co-ords from getCurrentPosition - default is set to Manchester
-	let userLocation: Coordinates = [53.48076, -2.24263];
+	let userLocation: null | Coordinates = [-2.24263, 53.48076];
 
 	$: console.log(destinationLocation, 'destinationLocation');
 
@@ -58,7 +57,7 @@
 	};
 
 	// Function to Google Geocoding API get lat/long co-ords from the place id that we got through placesAutoComplete
-	const coordinateFetch = async (place_id) => {
+	const coordinateFetch = async (place_id: string): Promise<Coordinates> => {
 		const res = await axios.get(`/api/latlng/${place_id}`);
 		return res.data.coordinates;
 	};
@@ -70,22 +69,25 @@
 			navigator.geolocation.getCurrentPosition(displayLocationInfo, showError);
 		}
 
-		function displayLocationInfo(position) {
-			userLocation = [+position.coords.latitude.toFixed(5), +position.coords.longitude.toFixed(5)];
+		function displayLocationInfo(position: GeolocationPosition): void {
+			userLocation = [+position.coords.longitude.toFixed(5), +position.coords.latitude.toFixed(5)];
 		}
 
-		function showError(error) {
+		function showError(error: GeolocationPositionError) {
 			switch (error.code) {
 				case error.PERMISSION_DENIED:
-					errorBox.innerHTML = 'User denied the request for Geolocation - default location is set to manchester.';
+					errorBox.innerHTML =
+						'User denied the request for Geolocation - default location is set to manchester.';
 					break;
 				case error.POSITION_UNAVAILABLE:
-					errorBox.innerHTML = 'Location information is unavailable - default location is set to manchester.';
+					errorBox.innerHTML =
+						'Location information is unavailable - default location is set to manchester.';
 					break;
 				case error.TIMEOUT:
-					errorBox.innerHTML = 'The request to get user location timed out - default location is set to manchester.';
+					errorBox.innerHTML =
+						'The request to get user location timed out - default location is set to manchester.';
 					break;
-				case error.UNKNOWN_ERROR:
+				default:
 					errorBox.innerHTML = 'An unknown error occurred - default location is set to manchester.';
 					break;
 			}
@@ -97,7 +99,7 @@
 	<title>Climate Travel App</title>
 </svelte:head>
 
-<main class="Search">
+<section class="search">
 	<h2>Compare travel destinations by climate.</h2>
 
 	<!-- Input form -->
@@ -141,22 +143,34 @@
 					<option value={prediction.place_id}>{prediction.placeName}</option>
 				{/each}
 			</select>
-			<p>Latitude: {destinationLocation[0]}</p>
-			<p>Longitude: {destinationLocation[1]}</p>
+			<p>Longitude: {destinationLocation[0]}</p>
+			<p>Latitude: {destinationLocation[1]}</p>
 			<button disabled={!destinationLocation} type="submit">Search</button>
 		</form>
 	{/if}
 
 	{#if userLocation}
 		<p>User Location</p>
-		<p>Latitude: {userLocation[0]}</p>
-		<p>Longitude: {userLocation[1]}</p>
+		<p>Longitude: {userLocation[0]}</p>
+		<p>Latitude: {userLocation[1]}</p>
 	{:else}
 		<p>Please enable location</p>
 	{/if}
-</main>
+	</section>
 
 <style>
+	.search {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		row-gap: 1em;
+		border: 1px solid red;
+	}
+
+	.search h2 {
+		text-align: center;
+	}
+
 	form {
 		display: flex;
 		flex-direction: column;
