@@ -1,13 +1,16 @@
 <script lang="ts">
 </script>
 <footer>
-    <h2 class="copyright"  > 
-Copyright 2022 Team X    
-    </h2>
-    <a class="about" href=/About>
-        About
-    </a>
+    <p>
+        &copy;
+        <script>
+            document.write(new Date().getFullYear());
+        </script>
+        Team X <span class="divider">|</span>
+        <a href="/profile/about" title="About the app">about & credits</a>
+    </p>
 </footer>
+
 <style>
     footer {
         padding: 20px;
