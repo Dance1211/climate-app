@@ -1,15 +1,16 @@
 <script lang="ts">
 	import Search from '$lib/components/search.svelte';
+	export let bgImage;
 </script>
 
-<main>
+<main style="background-image: url({bgImage});">
 	<Search />
 </main>
 
 <style>
 	main {
 		background-color: #dbeeff;
-		background-size: auto 100vh;
+		background-size: cover;
 		background-repeat: no-repeat;
 		background-position: top center;
 		background-attachment: fixed;
