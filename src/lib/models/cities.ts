@@ -9,7 +9,7 @@ export async function getCitiesSimilarToLocation(
 	{
 		limit = 10,
 		page = 1,
-		minDistanceMeters = 100000
+		minDistanceMeters = 1000000
 	}: {
 		limit?: number;
 		page?: number;
