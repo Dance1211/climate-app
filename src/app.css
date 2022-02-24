@@ -3,22 +3,3 @@
 /* Everything in this file will be applied globally. Use this for
  * overall style considerations and not for specific components
  */
-
-:root {
-	font-family: 'Exo 2', sans-serif;
-	font-weight: 500;
-	/* Global variables */
-	--primary-color: rgb(32, 101, 179);
-	--secondary-color: rgb(80, 197, 76);
-	--grey: #888;
-}
-
-* {
-	margin: 0;
-	padding: 0;
-}
-
-h1 {
-	font-weight: 800;
-	text-transform: uppercase;
-}

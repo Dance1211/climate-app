@@ -5,8 +5,6 @@
 	type Query = { location: string; home: string };
 	type Coordinates = [lng: number, lat: number];
 
-	let results;
-	let destinationName: string = '';
 	let predictionsArr;
 
 	$: console.log(predictionsArr, 'predictionsArr');
@@ -99,13 +97,13 @@
 	<title>Climate Travel App</title>
 </svelte:head>
 
-<section class="search">
-	<h2>Compare travel destinations by climate.</h2>
+<section class="container">
+	<h2 class="header">Compare travel destinations by climate.</h2>
 
 	<!-- Input form -->
-	<form on:submit|preventDefault={onInitialSubmit}>
-		<div>
-			<label for="location">I like the weather in</label>
+	<form class="search-form" on:submit|preventDefault={onInitialSubmit}>
+		<label for="location">
+			I like the weather in
 			<input
 				type="text"
 				name="location"
@@ -114,12 +112,10 @@
 				placeholder="City, country or town..."
 				required
 			/>
-		</div>
-		{#if !searchQuery.location}
-			<p class="warning">Please enter a location to search.</p>
-		{/if}
-		<div>
-			<label for="home">My location is</label>
+		</label>
+
+		<label for="home">
+			My location is
 			<input
 				type="text"
 				name="home"
@@ -127,14 +123,15 @@
 				bind:value={searchQuery.home}
 				placeholder="City or town..."
 			/>
-		</div>
-		<button disabled={!searchQuery.location} type="submit">Search</button>
+		</label>
+		<button class="search-button" disabled={!searchQuery.location} type="submit">
+			<i class="searchIcon material-icons">search</i> Search
+		</button>
 	</form>
 
 	<span id="locationError" />
 
-	{#if destinationLocation}
-		<!-- Confirmation of input form -->
+	<!-- {#if destinationLocation}
 		<form on:submit|preventDefault={onConfirmSubmit}>
 			<p>Your Search: {searchQuery.location}</p>
 			<p>Did you mean...</p>
@@ -147,43 +144,47 @@
 			<p>Latitude: {destinationLocation[1]}</p>
 			<button disabled={!destinationLocation} type="submit">Search</button>
 		</form>
-	{/if}
+	{/if} -->
 
-	{#if userLocation}
+	<!-- {#if userLocation}
 		<p>User Location</p>
 		<p>Longitude: {userLocation[0]}</p>
 		<p>Latitude: {userLocation[1]}</p>
 	{:else}
 		<p>Please enable location</p>
-	{/if}
-	</section>
+	{/if} -->
+</section>
 
 <style>
-	.search {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		row-gap: 1em;
-		border: 1px solid red;
-	}
-
-	.search h2 {
+	.container {
+		display: grid;
+		width: 90%;
+		max-width: 600px;
+		padding: 1.5rem;
+		background: var(--col-bg);
+		box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+		border-radius: 20px;
 		text-align: center;
+		margin: 30px auto 0 auto; /* align to center vertically */
 	}
 
-	form {
-		display: flex;
-		flex-direction: column;
-		justify-items: center;
+	.header {
+		margin-bottom: 1rem;
+	}
+
+	.search-button {
+		display: grid;
+		grid-template-columns: auto auto;
 		align-items: center;
-		grid-template-columns: 1fr;
-		grid-template-rows: auto;
+		text-align: left;
 	}
-	form > div {
-		display: flex;
-		flex-direction: column;
+
+	.search-button i {
+		text-align: right;
+		margin-right: 5px;
 	}
-	.warning {
+
+	/* .warning {
 		color: red;
-	}
+	} */
 </style>
