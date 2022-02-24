@@ -16,7 +16,6 @@
     "@sveltejs/adapter-auto": "next",
     "@sveltejs/kit": "next",
     "@types/google.maps": "^3.47.4",
-    "@types/googlemaps": "^3.43.3",
     "@typescript-eslint/eslint-plugin": "^5.10.1",
     "@typescript-eslint/parser": "^5.10.1",
     "dotenv": "^16.0.0",
