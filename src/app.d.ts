@@ -10,4 +10,11 @@ declare namespace App {
 	interface Session {}
 
 	interface Stuff {}
+
+	interface ImportMetaEnv{
+		VITE_GMAPS_KEY: string
+		VITE_WEATHER_API_KEY: string
+	}
 }
+
+
