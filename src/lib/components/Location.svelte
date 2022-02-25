@@ -48,6 +48,8 @@
 		{place.slice(0, 1).toUpperCase() + place.slice(1)}, {country.slice(0, 1).toUpperCase() +
 			country.slice(1)}
 	</h1>
+	<img {src} alt={place} />
+	{@html dummy.html_attributions}
 	{#if data}
 		{#if data.rating}
 			<p>Rating: {data.rating} based on {data.user_ratings_total} reviews.</p>
@@ -58,12 +60,8 @@
 
 	<h2>Location Data</h2>
 	<div class="TempGraph">
-		<h3>Average Temperature</h3>
+		<Chart />
 	</div>
-	<img {src} alt={place} />
-	{@html dummy.html_attributions}
-
-	<Chart />
 
 	<div class="LocationSuggestions">
 		<h3>You may also like...</h3>
