@@ -7,11 +7,11 @@ export async function get({ params }) {
 		const baseUrl = `https://maps.googleapis.com/maps/api/place/details/json`;
 		const res = await axios.get(baseUrl, { params: { key: apiKey, place_id } });
 
-		const { photos, reviews, rating, user_ratings_total } = res.data.result;
+		const { photos, rating, user_ratings_total } = res.data.result;
 
 		return {
 			status: 200,
-			body: { photos, reviews, rating, user_ratings_total }
+			body: { photos, rating, user_ratings_total }
 		};
 	} catch (err) {
 		return {
