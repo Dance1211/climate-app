@@ -79,31 +79,7 @@ header nav .logo a em {
 	font-style: normal;
 }
 
-/* home page styles - inc. image randomiser */
-body.home-page main {
-	background-color: #dbeeff;
-	background-size: auto 100vh;
-	background-repeat: no-repeat;
-	background-position: top center;
-	background-attachment: fixed;
-	min-height: 100vh;
-	display: grid;
-	align-items: center;
-}
-body.home-page section.search {
-	width: 90%;
-	max-width: 600px;
-	background: var(--col-bg);
-	border-radius: 20px;
-	background: var(--col-bg);
-	padding: 1.5rem;
-	box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
-	margin: 30px auto 0 auto; /* align to center vertically */
-	text-align: center;
-}
-body.home-page section.search h1 {
-	margin-bottom: 1rem;
-}
+
 body.home-page section.search button {
 	display: grid;
 	grid-template-columns: auto auto;

@@ -1,7 +1,8 @@
 <script lang="ts">
-	import axios from 'axios';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
+	import LocationSearch from '$components/locationSearch.svelte';
+
 	type Query = { location: string; home: string };
 	type Coordinates = [lng: number, lat: number];
 
@@ -23,17 +24,6 @@
 	$: console.log(destinationLocation, 'destinationLocation');
 
 	/* Event handlers */
-	// Changing the dropdown queries the API to get new co-ords
-	const onChange = async (e): Promise<void> => {
-		destinationLocation = await coordinateFetch(e.target.value);
-	};
-
-	// Gets co-ords when user submits first form
-	const onInitialSubmit = async (): Promise<void> => {
-		const { place_id, predictions } = await placeIdFetch();
-		predictionsArr = predictions;
-		destinationLocation = await coordinateFetch(place_id);
-	};
 
 	// Go-to next page when user confirms correct location
 	const onConfirmSubmit = (): void => {
@@ -46,18 +36,11 @@
 		}
 	};
 
-	// Function to Google Maps API to autocomplete a full address from the user's input. Gets the place id and then calls geoCodingFetch to get the lat/long co-ords
-	const placeIdFetch = async () => {
-		const res = await axios.get(`/api/destination/${searchQuery.location}`);
-		const place_id = res.data.place_id;
-		const predictions = res.data.predictions;
-		return { place_id, predictions };
-	};
-
 	// Function to Google Geocoding API get lat/long co-ords from the place id that we got through placesAutoComplete
 	const coordinateFetch = async (place_id: string): Promise<Coordinates> => {
-		const res = await axios.get(`/api/latlng/${place_id}`);
-		return res.data.coordinates;
+		const res = await fetch(`/api/latlng/${place_id}`);
+		const resObject = await res.json();
+		return resObject.coordinates;
 	};
 
 	// When the page loads, get the user position
@@ -101,28 +84,19 @@
 	<h2 class="header">Compare travel destinations by climate.</h2>
 
 	<!-- Input form -->
-	<form class="search-form" on:submit|preventDefault={onInitialSubmit}>
+	<form class="search-form" on:submit|preventDefault={onConfirmSubmit}>
 		<label for="location">
 			I like the weather in
-			<input
-				type="text"
-				name="location"
-				id="location"
-				bind:value={searchQuery.location}
+			<LocationSearch
+				bind:placeId={searchQuery.location}
 				placeholder="City, country or town..."
-				required
+				id="location"
 			/>
 		</label>
 
 		<label for="home">
 			My location is
-			<input
-				type="text"
-				name="home"
-				id="home"
-				bind:value={searchQuery.home}
-				placeholder="City or town..."
-			/>
+			<LocationSearch placeholder="City or town..." id="home" bind:placeId={searchQuery.home} />
 		</label>
 		<button class="search-button" disabled={!searchQuery.location} type="submit">
 			<i class="searchIcon material-icons">search</i> Search
@@ -131,7 +105,7 @@
 
 	<span id="locationError" />
 
-	{#if destinationLocation}
+	<!-- {#if destinationLocation}
 		<form on:submit|preventDefault={onConfirmSubmit}>
 			<p>Your Search: {searchQuery.location}</p>
 			<p>Did you mean...</p>
@@ -144,7 +118,7 @@
 			<p>Latitude: {destinationLocation[1]}</p>
 			<button disabled={!destinationLocation} type="submit">Search</button>
 		</form>
-	{/if}
+	{/if} -->
 
 	<!-- {#if userLocation}
 		<p>User Location</p>
