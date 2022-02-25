@@ -2,6 +2,7 @@
 	export let placeholder: string;
 	export let id: string;
 	export let placeId: null | string = null;
+  export let required: boolean = false;
 
 	let inputText = { current: '', editing: '' };
 	let active = false;
@@ -73,7 +74,7 @@
 	};
 </script>
 
-<div class="locationSearch">
+<div class={`locationSearch ${showSuggestions ? "onTop" : ""}`}>
 	<div class="container {active ? 'active' : ''}">
 		<input
 			type="text"
@@ -83,7 +84,7 @@
 			on:focus={handleInputFocus}
 			on:blur={handleInputBlur}
 			on:keyup={handleInputEnter}
-			required
+			required={required}
 		/>
 		{#if predictions?.length && showSuggestions}
 			<ul class="suggestionContainer">
@@ -104,7 +105,7 @@
 		margin-bottom: 0.75em;
 	}
 
-	.locationSearch * {
+	.onTop * {
 		z-index: 100;
 	}
 

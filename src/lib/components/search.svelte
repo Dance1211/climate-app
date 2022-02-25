@@ -17,8 +17,6 @@
 
 	// Destination co-ords received from coordinateFetch
 	let destinationLocation: null | Coordinates = null;
-
-	// User input co-ords from getCurrentPosition - default is set to Manchester
 	let userLocation: null | Coordinates = [-2.24263, 53.48076];
 
 	$: console.log(destinationLocation, 'destinationLocation');
@@ -26,7 +24,8 @@
 	/* Event handlers */
 
 	// Go-to next page when user confirms correct location
-	const onConfirmSubmit = (): void => {
+	const onConfirmSubmit = async (): Promise<void> => {
+		destinationLocation = await coordinateFetch(searchQuery.location);
 		if (destinationLocation) {
 			const searchUrl = `/searchresults&lat=${destinationLocation[0]}&lng=${destinationLocation[1]}`;
 			goto(searchUrl);
@@ -91,6 +90,7 @@
 				bind:placeId={searchQuery.location}
 				placeholder="City, country or town..."
 				id="location"
+				required={true}
 			/>
 		</label>
 
