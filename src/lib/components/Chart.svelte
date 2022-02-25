@@ -66,4 +66,4 @@
 	});
 </script>
 
-<canvas id="myChart" bind:this={ctx} />
+<canvas id="myChart" bind:this={ctx}></canvas>
