@@ -6,9 +6,6 @@
 	type Query = { location: string; home: string };
 	type Coordinates = [lng: number, lat: number];
 
-	let predictionsArr;
-
-	$: console.log(predictionsArr, 'predictionsArr');
 	// Input from user
 	let searchQuery: Query = {
 		location: '',
@@ -19,9 +16,14 @@
 	let destinationLocation: null | Coordinates = null;
 	let userLocation: null | Coordinates = [-2.24263, 53.48076];
 
-	$: console.log(destinationLocation, 'destinationLocation');
-
 	/* Event handlers */
+
+	// Function to Google Geocoding API get lat/long co-ords from the place id that we got through placesAutoComplete
+	const coordinateFetch = async (place_id: string): Promise<Coordinates> => {
+		const res = await fetch(`/api/latlng/${place_id}`);
+		const resObject = await res.json();
+		return resObject.coordinates;
+	};
 
 	// Go-to next page when user confirms correct location
 	const onConfirmSubmit = async (): Promise<void> => {
@@ -33,13 +35,6 @@
 			// Error handling component here
 			console.log('invalid location result');
 		}
-	};
-
-	// Function to Google Geocoding API get lat/long co-ords from the place id that we got through placesAutoComplete
-	const coordinateFetch = async (place_id: string): Promise<Coordinates> => {
-		const res = await fetch(`/api/latlng/${place_id}`);
-		const resObject = await res.json();
-		return resObject.coordinates;
 	};
 
 	// When the page loads, get the user position
