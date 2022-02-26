@@ -14,6 +14,7 @@ export async function get({ params }) {
 			body: { place_id: res.data.predictions[0].place_id, predictions }
 		};
 	} catch (err) {
+		console.error(err);
 		return {
 			status: 500,
 			body: {
