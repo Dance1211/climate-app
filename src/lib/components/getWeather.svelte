@@ -3,7 +3,6 @@
 	const gmapsKey = import.meta.env.VITE_GMAPS_KEY;
 	import axios from 'axios';
 
-	console.log(apiKey);
 	let loading = false;
 	let data: boolean = false;
 	let city = '';
