@@ -131,4 +131,12 @@
 	/* .warning {
 		color: red;
 	} */
+
+	/* home - search box - increase heading size */
+	@media only screen and (min-width: 768px) {
+		h2 {
+			font-size: 38px;
+			margin-bottom: 2rem;
+		}
+	}
 </style>

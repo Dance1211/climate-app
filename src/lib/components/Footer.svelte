@@ -7,7 +7,7 @@
 		&copy;
 		{year}
 		Team X <span class="divider">|</span>
-		<a href="/profile/about" title="About the app">about & credits</a>
+		<a href="/about" title="About the app">about & credits</a>
 	</p>
 </footer>
 

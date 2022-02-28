@@ -1,52 +1,91 @@
 <script lang="ts">
-	import Fa from 'svelte-fa/src/fa.svelte';
-	import { faBars } from '@fortawesome/free-solid-svg-icons';
-	let menu: boolean = false;
-	function openMenu() {
-		menu = !menu;
+	import '$components/NavMenu.svelte';
+	import NavMenu from '$components/NavMenu.svelte';
+	let isNavOpen: boolean = false;
+	function toggleNav() {
+		isNavOpen = !isNavOpen;
 	}
 </script>
 
 <header>
-	<nav>
-		<h2 class="logo">
-			<a href="/" title="Home">
+	<h2 class="logo">
+		<a href="/" title="Home">
 			where<em>to.</em>
-			</a> 
-		</h2>
-		<button class="hamburger" on:click={openMenu}>
-			{#if menu}
+		</a>
+	</h2>
+	<button class="hamburger" on:click={toggleNav}>
+		{#if !isNavOpen}
 			<i class="menuIcon material-icons"> menu </i>
-			{:else}
+		{:else}
 			<i class="closeIcon material-icons"> close </i>
-			{/if}
-			<Fa icon={faBars} />
-		</button>
-
-		{#if !menu}
-			<ul class="nav-links-primary">
-				<li class="menuItem"><a href="/" title="Home"> Home </a></li>
-				<li class="menuItem">
-					<a href="/profile/my-locations" title="Saved Locations">My Locations </a>
-				</li>
-				<li class="menuItem">
-					<a href="/my-searches" title="Saved Search Results">My Searches </a>
-				</li>
-			</ul>
-			<ul class="nav-links-secondary">
-				<li class="menuItem search">
-					<a href="/search" title="New Search">
-						<i class="searchIcon material-icons"> search </i>
-					</a>
-				</li>
-				<li class="menuItem account"><a href="/account" title="My Account"> My Account</a></li>
-			</ul>
 		{/if}
-	</nav>
+	</button>
+	<NavMenu bind:isNavOpen />
 </header>
 
 <style>
-	h1 {
-		text-align: center;
+	header {
+		position: fixed;
+		top: 0;
+		z-index: 9999;
+		width: 100%;
+		background: var(--col-bg);
+		box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+		padding: 0 1rem;
+
+		display: grid;
+		grid-template-columns: auto auto auto;
+		grid-gap: 8%;
+		width: 100%;
+		max-width: 1240px;
+		margin-right: auto;
+		margin-left: auto;
+		align-items: center;
+		height: 60px;
+	}
+	.logo {
+		margin-bottom: 0;
+	}
+	.logo a {
+		color: var(--col-brand-primary);
+	}
+	.logo a em {
+		color: var(--col-brand-tertiary);
+		font-style: normal;
+	}
+
+	button.hamburger {
+		position: fixed;
+		z-index: 9999;
+		top: 1rem;
+		right: 1rem;
+		padding: 0.5rem;
+		border: none;
+		background: none;
+		cursor: pointer;
+		color: var(--col-brand-primary);
+		border-radius: 5px;
+	}
+
+	button.hamburger:hover {
+		color: var(--col-bg);
+	}
+
+	.closeIcon {
+		color: var(--col-bg);
+	}
+
+	@media only screen and (min-width: 768px) {
+		/* header - nav layout changes */
+		header {
+			display: grid;
+			grid-template-columns: 20% 80%;
+			grid-gap: 0;
+			padding-right: 1rem;
+		}
+
+		button.hamburger {
+			display: none;
+		}
 	}
 </style>
