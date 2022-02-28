@@ -1,4 +1,5 @@
 import axios from 'axios';
+import date from 'date-and-time';
 
 export async function get({ params }) {
 	try {
@@ -36,9 +37,14 @@ export async function get({ params }) {
 		};
 
 		const index = weatherJSON.weather.index;
+		const readableDate = index.map((month) => {
+			const intermediateDate = new Date(month * 1000);
+			return date.format(intermediateDate, 'MMM YYYY');
+		});
+
 		const data = weatherJSON.weather.data;
-		const tempByMonth = index.map((month, index) => {
-			return {[month]: data[index][4]};
+		const tempByMonth = readableDate.map((month, index) => {
+			return [month, data[index][4]];
 		});
 
 		return {
