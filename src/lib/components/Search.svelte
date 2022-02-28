@@ -72,7 +72,7 @@
 	};
 
 	// Call to Google Maps API to autocomplete a full address from the user's input. Gets the place id and array of predictions (used to build drop-down list)
-	export const placeIdFetch = async (location) => {
+	const placeIdFetch = async (location: string) => {
 		const res = await axios.get(`/api/destination/${location}`);
 		const { place_id, predictions } = res.data;
 		placeId = place_id;
