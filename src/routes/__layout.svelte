@@ -1,7 +1,12 @@
 <script lang="ts">
-	import '../app.css';
+  import '../lib/css/styles-basic-reset.css'
+  import '../lib/css/styles-main.css'
 </script>
 
-<main />
+<main>
+  <slot />
+</main>
 
-<slot />
+<style>
+
+</style>
