@@ -1,0 +1,293 @@
+/* main styles - mobile first */
+
+/* css variables: global values to be referenced throughout */
+:root {
+	--col-brand-primary: #007ae6;
+	--col-brand-secondary: #1f1f1f; /* use for main text */
+	--col-brand-tertiary: #ff5f00;
+	--col-dividers-borders: #e7e7e7;
+	--col-dividers-borders2: #2797fa;
+	--col-bg: #fff;
+	--font-fam: 'Poppins', sans-serif;
+}
+
+/* global */
+html {
+	font-size: 16px; /* default - use rems for other sizes */
+	line-height: 1.4;
+	font-family: var(--font-fam);
+	background: var(--col-bg);
+	color: var(--col-brand-secondary);
+}
+
+/* typography (font styling) */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: 700;
+	line-height: 1.2;
+}
+h1 {
+	font-size: 1.875rem; /* 30px default */
+	letter-spacing: -0.07rem;
+}
+h2 {
+	font-size: 1.625rem; /* 26px default */
+	letter-spacing: -0.07rem;
+}
+a {
+	color: var(--col-brand-primary);
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+	opacity: 0.7;
+}
+
+/* layout & main components */
+header {
+	position: fixed;
+	top: 0;
+	z-index: 9999;
+	width: 100%;
+	background: var(--col-bg);
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+	padding: 0 1rem;
+}
+header nav {
+	display: grid;
+	grid-template-columns: auto auto auto;
+	grid-gap: 8%;
+	width: 100%;
+	max-width: 1240px;
+	margin-right: auto;
+	margin-left: auto;
+	align-items: center;
+	height: 60px;
+}
+header nav .logo {
+	margin-bottom: 0;
+}
+header nav .logo a {
+	color: var(--col-brand-primary);
+}
+header nav .logo a em {
+	color: var(--col-brand-tertiary);
+	font-style: normal;
+}
+
+
+body.home-page section.search button {
+	display: grid;
+	grid-template-columns: auto auto;
+	align-items: center;
+	text-align: left;
+}
+body.home-page section.search button i {
+	text-align: right;
+	margin-right: 5px;
+}
+body.home-page .my-location-input-and-button {
+	/* container for the 2 elements */
+	display: grid;
+	grid-template-columns: auto 45px;
+	align-items: center;
+}
+body.home-page .my-location-input-and-button button {
+	text-align: right;
+	background: none;
+	color: var(--col-brand-tertiary);
+	margin-top: -5px;
+}
+body.home-page .my-location-input-and-button button i {
+	margin: 0;
+}
+body.home-page .my-location-input-and-button button:hover,
+body.home-page .my-location-input-and-button button:after {
+	color: var(--col-brand-secondary);
+	background: none;
+}
+
+/* home page - fade in effect - helps cover any bg image loading time */
+body.home-page main.image-randomiser {
+	animation: fadebackground 1.5s 1; /* plays once, no repeat */
+}
+@keyframes fadebackground {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@-moz-keyframes fadebackground {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@-webkit-keyframes fadebackground {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@-o-keyframes fadebackground {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@-ms-keyframes fadebackground {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+/* forms */
+form input,
+form textarea,
+form button {
+	padding: 0.75rem 1rem;
+	font-family: var(--font-fam);
+	font-weight: 400;
+	font-size: 0.875rem; /* 14px default */
+	border: none;
+	width: 100%;
+	/* height: 3.75rem; */
+}
+form label {
+	margin-bottom: 0.3125rem; /* 5px default */
+	display: block;
+	font-size: 0.875rem; /* 14px default */
+	font-weight: bold;
+	text-align: left;
+}
+form input {
+	background-color: #f3f3f3;
+	border: 1px solid var(--col-dividers-borders);
+	border-radius: 10px;
+	margin-bottom: 0.75em;
+}
+form button {
+	background: var(--col-brand-primary);
+	color: var(--col-bg);
+	font-weight: 500;
+	border-radius: 10px;
+}
+
+/* fancy button effects */
+button {
+	overflow: hidden;
+	transition: 0.2s transform ease-in-out;
+	will-change: transform;
+	z-index: 0;
+}
+button::after {
+	background-color: var(--col-brand-tertiary);
+	content: '';
+	color: var(--col-bg);
+	display: block;
+	height: 150%;
+	width: 150%;
+	position: absolute;
+	left: -20%;
+	top: 0;
+	transform: translate(-100%, 0) rotate(10deg);
+	transition: 0.2s transform ease-out;
+	will-change: transform;
+	z-index: -1;
+}
+button:hover::after {
+	transform: translate(0, 0);
+}
+button:hover {
+	transform: scale(1);
+	will-change: transform;
+}
+
+/* form validation */
+form p.error,
+form p.success {
+	font-weight: 700;
+	display: none;
+}
+form p.error i {
+	color: var(--col-brand-primary);
+	margin-right: 0.5rem;
+}
+form p.success i {
+	color: seagreen;
+	margin-right: 0.5rem;
+}
+form .invalid {
+	border-color: red;
+}
+form .valid {
+	border-color: seagreen;
+}
+
+/* --------- MEDIA QUERIES FOR LARGER DEVICES---------  */
+
+/* medium devices, 768px + */
+@media only screen and (min-width: 768px) {
+	/* header - nav layout changes */
+	header nav {
+		display: grid;
+		grid-template-columns: 20% 80%;
+		grid-gap: 0;
+		padding-right: 1rem;
+	}
+	header nav .menu {
+		display: grid;
+		grid-template-columns: 70% 25%;
+		grid-gap: 5%;
+		justify-items: end;
+		align-items: center;
+	}
+	header nav .menu ul li {
+		display: inline;
+		padding: 0 0.5rem;
+	}
+	header nav .menu ul.nav-links-primary li a {
+		font-weight: bold;
+		font-size: 1rem;
+		padding: 0 0.75rem;
+	}
+	header nav .menu ul.nav-links-secondary {
+		text-align: right;
+	}
+	header nav .menu ul.nav-links-secondary li a {
+		font-size: 0.75rem; /* 12px default*/
+		padding-left: 0.5rem;
+	}
+	header nav .menu ul.nav-links-secondary li.account {
+		padding-right: 0;
+	}
+	header nav .menu ul.nav-links-secondary li.account a {
+		line-height: 0;
+	}
+
+	/* home - background image - make it fill width */
+	body.home-page main {
+		background-size: cover;
+	}
+
+	/* home - search box - increase heading size */
+	body.home-page section.search h1 {
+		font-size: 38px;
+		margin-bottom: 2rem;
+	}
+}
