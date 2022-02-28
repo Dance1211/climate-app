@@ -4,7 +4,6 @@ const apiKey = import.meta.env.VITE_API_KEY;
 export async function get({ params }) {
 	try {
 		const photo_reference = params.photoref;
-		console.log(photo_reference);
 		const url = `https://maps.googleapis.com/maps/api/place/photo`;
 
 		const res = await axios.get(url, { params: { maxwidth: 400, photo_reference, key: apiKey } });
