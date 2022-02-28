@@ -36,8 +36,6 @@
 		display: grid;
 		grid-template-columns: auto auto auto;
 		grid-gap: 8%;
-		width: 100%;
-		max-width: 1240px;
 		margin-right: auto;
 		margin-left: auto;
 		align-items: center;
