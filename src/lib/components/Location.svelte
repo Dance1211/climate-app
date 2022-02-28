@@ -7,21 +7,9 @@
 	let place: string = '';
 	let country: string = '';
 	let place_id: string;
-
-	// get place from url params
-	let dummy = {
-		height: 499,
-		html_attributions: [
-			'<a href="https://maps.google.com/maps/contrib/108917525799035589745">Mike Ledwith</a>'
-		],
-		photo_reference:
-			'Aap_uEBmSUTTQOUbkobEOPS4z8AWnypto8aNTqgOpumo9GPMkisuJtiT5KqZO2GgOuZ-7vtO60G8Tm7NkA8UAhB4iQnEJbOirlxQiTp2ZmOwJXzpVX16uDPFlvZ1H7eYCfAunFTIOT-4155e3Zl9jflZSuQrUJ-3-qq8cCkV2C0xwgYSmP4V',
-		width: 887
-	};
-
-	let src = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${dummy.photo_reference}&key=${apiKey}`;
-
+	let src: string;
 	let data;
+	let photo_reference: string;
 
 	onMount(async () => {
 		let params = new URLSearchParams(document.location.search);
@@ -32,14 +20,22 @@
 			const res = await axios.get(`api/destination/${place}`);
 			return res.data.place_id;
 		};
-		//	place_id = await getPlaceId();
+		place_id = await getPlaceId();
 
 		const infoFetch = async () => {
 			const res = await axios.get(`/api/placeinfo/${place_id}`);
 			return res.data;
 		};
-		//	data = await infoFetch();
-		console.log(data, 'data');
+		data = await infoFetch();
+		photo_reference = data.photos.photo_reference;
+		src = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_reference}&key=AIzaSyC9fUjZpK0R-RE_BarfZmkv25fT3YCUirE`;
+
+		/* This function is used to grab the raw image data. It is commented out because I don't know how to render it onto the page. 		
+		const photoFetch = async () => {
+			const res = await axios.get(`/api/placeinfo/photo/${photo_reference}`);
+			return res.data.photo;
+		};
+		src = await photoFetch(); */
 	});
 </script>
 
@@ -48,8 +44,9 @@
 		{place.slice(0, 1).toUpperCase() + place.slice(1)}, {country.slice(0, 1).toUpperCase() +
 			country.slice(1)}
 	</h1>
+	<!-- include climate code here -->
 	<img {src} alt={place} />
-	{@html dummy.html_attributions}
+
 	{#if data}
 		{#if data.rating}
 			<p>Rating: {data.rating} based on {data.user_ratings_total} reviews.</p>
@@ -69,4 +66,8 @@
 </div>
 
 <style>
+	img {
+		width: 300px;
+		height: auto;
+	}
 </style>
