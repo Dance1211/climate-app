@@ -89,5 +89,41 @@
 
 	/* media query - hide 'hamburger' menu on larger devices */
 	@media (min-width: 768px) {
+		nav {
+			display: grid;
+			grid-template-columns: 70% 25%;
+			grid-gap: 5%;
+			justify-items: end;
+			align-items: center;
+		}
+		ul {
+			display: grid;
+			grid-template-columns: auto auto auto;
+			margin-bottom: 0;
+		}
+		ul li {
+			padding: 0 0.5rem;
+		}
+		ul.nav-links-primary {
+			justify-self: center;
+		}
+		ul.nav-links-primary li a {
+			font-weight: bold;
+			font-size: 1rem;
+			padding: 0 0.75rem;
+		}
+		ul.nav-links-secondary {
+			text-align: right;
+		}
+		ul.nav-links-secondary li a {
+			font-size: 0.75rem; /* 12px default*/
+			padding-left: 0.5rem;
+		}
+		ul.nav-links-secondary li.account {
+			padding-right: 0;
+		}
+		ul.nav-links-secondary li.search a:hover {
+			text-decoration: none;
+		}
 	}
 </style>
