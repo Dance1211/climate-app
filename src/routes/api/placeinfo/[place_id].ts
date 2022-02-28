@@ -6,7 +6,6 @@ export async function get({ params }) {
 		const place_id = params.place_id;
 		const baseUrl = `https://maps.googleapis.com/maps/api/place/details/json`;
 		const res = await axios.get(baseUrl, { params: { key: apiKey, place_id } });
-		console.log(res.data);
 
 		const { photos, rating, user_ratings_total } = res.data.result;
 
