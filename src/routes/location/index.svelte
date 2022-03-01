@@ -44,8 +44,7 @@
 
 <div class="LocationData">
 	<h1>
-		{place.slice(0, 1).toUpperCase() + place.slice(1)}, {country.slice(0, 1).toUpperCase() +
-			country.slice(1)}
+		{place}, {country}
 	</h1>
 	<!-- include climate code here -->
 	<img {src} alt={place} />
@@ -61,6 +60,9 @@
 </div>
 
 <style>
+	h1 {
+		text-transform: capitalize;
+	}
 	img {
 		width: 300px;
 		height: auto;
