@@ -1,7 +1,7 @@
 import { getCitiesSimilarToLocation } from "$lib/models/cities";
 import type { LoadInput } from "@sveltejs/kit";
 import {getWeather} from '$lib/models/weather'
-import axios from 'axios'
+
 
 
 
@@ -15,29 +15,22 @@ export async function get ({url}: LoadInput) {
     const cities = await getCitiesSimilarToLocation([lng, lat], {})
 
    
-    const weatherData = await Promise.all(
+    const combinedData = await Promise.all(
     cities.map(async (city) => {
       
         const cityWeather = await getWeather(city.city_ascii)
       
-        return cityWeather
+        return {cityWeather, city}
        
     })
     )
 
-    console.log(weatherData)
-
-
-
-
-  
-
     
-
-    return {
+     return {
         status:200,
         body: {
-            cities
+          combinedData
+           
         }
     }
 }
