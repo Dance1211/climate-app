@@ -15,10 +15,18 @@ export async function get({ url }: LoadInput) {
 
 	const { lat, lng } = await getLatLng(place_id);
 
-	const cities = await getCitiesSimilarToLocation([lng, lat], {});
+	const cities = (await getCitiesSimilarToLocation([lng, lat], {})).slice(0,5);
+
+	const cityInfo = await Promise.all(
+		cities.map(async (city) => {
+			const { photo_reference } = await getPhotoRef(city.city_ascii);
+			const src = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_reference}&key=AIzaSyC9fUjZpK0R-RE_BarfZmkv25fT3YCUirE`;
+			return { src, details: city };
+		})
+	);
 
 	return {
 		status: 200,
-		body: { src, place, country, weather, cities }
+		body: { src, place, country, weather, cities, cityInfo }
 	};
 }
