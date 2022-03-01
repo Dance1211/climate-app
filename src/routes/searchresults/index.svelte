@@ -1,10 +1,11 @@
 <script lang="ts">
 	import type { KGCode } from '$lib/types/kg-code';
 	import WeatherCard from '$lib/components/WeatherCard.svelte';
+	import type { City } from '$lib/types/cities';
 
 	let kgCode: KGCode = null;
 
-	export let combinedData;
+	export let combinedData: City[];
 </script>
 
 <!-- wrap rendered card in Link -->

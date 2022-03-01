@@ -1,19 +1,27 @@
 <script lang="ts">
+	import type { CityDB } from '$lib/types/cities';
 
+	export let cities = [] as CityDB[];
 </script>
 
 <section class="map">
-  HELLO
+	{#each cities as city}
+		<div class="marker" />
+	{/each}
 </section>
 
 <style>
-  .map {
-    width: 100%;
-    max-width: 100vw;
-    max-height: 100vh;
-    background-image: url("/images/mapBackground.png");
-    background-position: center;
-    background-size: cover;
-    aspect-ratio: 2;
-  }
+	.map {
+		position: relative;
+		width: 100%;
+		max-width: 100vw;
+		max-height: 100vh;
+		background-image: url('/images/mapBackground.png');
+		background-position: center;
+		background-size: cover;
+		aspect-ratio: 2;
+	}
+
+	.marker {
+	}
 </style>

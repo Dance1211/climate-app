@@ -4,8 +4,8 @@ import { getWeather } from '$lib/models/weather';
 import type { City } from '$lib/types/cities';
 
 export async function get({ url }: LoadInput) {
-	const lat = +url.searchParams.get('lat');
-	const lng = +url.searchParams.get('lng');
+	const lat = +url.searchParams.get('lat') || 53.48;
+	const lng = +url.searchParams.get('lng') || 2.24;
 
 	const cities = await getCitiesSimilarToLocation([lng, lat], {});
 
