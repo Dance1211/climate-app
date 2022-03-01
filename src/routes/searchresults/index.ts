@@ -9,6 +9,8 @@ export async function get({ url }: LoadInput) {
 
 	const cities = await getCitiesSimilarToLocation([lng, lat], {});
 
+	console.dir(cities, {depth: 3});
+
 	const combinedData = await Promise.all(
 		cities.map(async (city) => {
 			const cityWeather = await getWeather(city.city_ascii);
