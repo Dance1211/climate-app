@@ -4,7 +4,6 @@
 	export let place: string;
 	export let country: string;
 	export let weather: any;
-	export let cities: any[];
 	export let cityInfo: any[];
 </script>
 
@@ -12,7 +11,7 @@
 	<h1>
 		{place}, {country}
 	</h1>
-	<h2>Climate Zone: {cities[0].kgcode}</h2>
+	<h2>Climate Zone: {cityInfo[0].details.kgcode}</h2>
 	<img {src} alt={place} />
 
 	<h2>Location Data</h2>
