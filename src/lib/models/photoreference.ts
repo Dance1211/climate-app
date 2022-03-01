@@ -11,6 +11,6 @@ export async function getPhotoRef(place: string) {
 	const photoRefUrl = `https://maps.googleapis.com/maps/api/place/details/json`;
 	const photoRes = await axios.get(photoRefUrl, { params: { key: apiKey, place_id } });
 	const photo_reference = photoRes.data.result.photos[0].photo_reference;
-    
-	return photo_reference;
+
+	return { photo_reference, place_id };
 }
