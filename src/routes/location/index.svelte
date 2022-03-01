@@ -5,13 +5,14 @@
 	export let country: string;
 	export let weather: any;
 	export let cities: any[];
+	export let cityInfo: any[];
 </script>
 
 <div class="LocationData">
 	<h1>
 		{place}, {country}
 	</h1>
-	<!-- include climate code here -->
+	<h2>Climate Zone: {cities[0].kgcode}</h2>
 	<img {src} alt={place} />
 
 	<h2>Location Data</h2>
@@ -21,8 +22,9 @@
 
 	<div class="LocationSuggestions">
 		<h3>You may also like...</h3>
-		{#each cities.slice(0, 5) as city (city._id)}
-			<p>{city.city}</p>
+		{#each cityInfo as city (city.details._id)}
+			<p>{city.details.city}, {city.details.country}</p>
+			<img src={city.src} alt={city.details.city}/>
 		{/each}
 	</div>
 </div>
