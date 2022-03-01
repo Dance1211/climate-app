@@ -3,6 +3,7 @@
     export let src: string;
     export let place: string;
     export let country: string;
+    export let weather;
 </script>
 
 <div class="LocationData">
@@ -14,7 +15,7 @@
 
 	<h2>Location Data</h2>
 	<div class="TempGraph">
-		<Chart />
+		<Chart {weather}/>
 	</div>
 
 	<div class="LocationSuggestions">
