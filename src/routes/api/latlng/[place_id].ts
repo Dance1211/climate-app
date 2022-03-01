@@ -1,6 +1,10 @@
 import axios from 'axios';
 const apiKey = import.meta.env.VITE_API_KEY;
 
+
+
+
+
 export async function get({ params }) {
 	try {
 		const place_id = params.place_id;
@@ -26,6 +30,8 @@ export async function get({ params }) {
 			body: {
 				err
 			}
-		};
+		}
 	}
+
+
 }

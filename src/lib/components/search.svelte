@@ -29,7 +29,7 @@
 	// Go-to next page when user confirms correct location - passes through location, user location and country as URL params
 	const onConfirmSubmit = (): void => {
 		if (destinationLocation) {
-			const searchUrl = `/getweather?lat=${destinationLocation[0]}&lng=${destinationLocation[1]}&country=${countryCode}&userlat=${userLocation[0]}&userlng=${userLocation[1]}`;
+			const searchUrl = `/searchresults?lat=${destinationLocation[0]}&lng=${destinationLocation[1]}&country=${countryCode}&userlat=${userLocation[0]}&userlng=${userLocation[1]}`;
 			goto(searchUrl);
 		} else {
 			// Error handling component here
