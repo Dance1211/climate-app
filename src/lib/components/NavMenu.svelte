@@ -1,20 +1,30 @@
 <script lang="ts">
 	export let isNavOpen: boolean;
+
+	const closeNav = () => {
+		isNavOpen = false;
+	}
+
 </script>
 
 <nav class={isNavOpen ? 'showMenu' : ''}>
 	<ul class="nav-links-primary">
-		<li class="menuItem"><a href="/" title="Home"> Home </a></li>
+		<li class="menuItem"><a  href="/" title="Home"on:click={closeNav}> Home </a></li>
 		<li class="menuItem">
-			<a href="/profile/my-locations" title="Saved Locations">My Locations </a>
+			<a
+				href="/profile/my-locations"
+				title="Saved Locations"
+				on:click={closeNav}
+				>My Locations
+			</a>
 		</li>
 		<li class="menuItem">
-			<a href="/my-searches" title="Saved Search Results">My Searches </a>
+			<a href="/my-searches" title="Saved Search Results"on:click={closeNav}>My Searches </a>
 		</li>
 	</ul>
 	<ul class="nav-links-secondary">
 		<li class="menuItem search">
-			<a href="/search" title="New Search">
+			<a href="/search" title="New Search" on:click={closeNav}>
 				<i class="searchIcon material-icons"> search </i>
 			</a>
 		</li>

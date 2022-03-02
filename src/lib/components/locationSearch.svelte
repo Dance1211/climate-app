@@ -74,7 +74,6 @@
 	};
 </script>
 
-<p>{showSuggestions}</p>
 <div class={`locationSearch ${showSuggestions ? "onTop" : ""}`}>
 	<div class={'container' + (active ? ' active' : '')}>
 		<input
