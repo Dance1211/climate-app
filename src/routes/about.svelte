@@ -15,14 +15,14 @@
 
 		<h1>How's it built?</h1>
 		<p>The team decided to try out some new technology that was not taught on the course (which was mainly based around JavaScript, Node and React).</p>
-		
 		<p>The app uses the <a href="https://svelte.dev/" target="_blank">Svelte</a> framework, <a href="https://www.typescriptlang.org/" target="_blank">TypeScript</a>, <a href="https://www.mongodb.com" target="_blank">mongoDB</a> for the databases, and various APIs to grab location images and weather data. All brought together with copious amounts of JavaScript, HTML and CSS.</p>
 
 		<h1>Credits</h1>
 		<p>Thanks to the open source community and various creatives and developers who help make projects like this possible.</p>
 		<p><a href="https://unsplash.com/" target="_blank">Unsplash</a> - community of 'open source' photographers. Thanks for the beautiful background images.</p>
+		<p><a href="https://openweathermap.org/" target="_blank">OpenWeatherMap API</a> - for the weather forecast data.</p>
 		<p><a href="https://www.amcharts.com/" target="_blank">amCharts</a> - for the animated weather icons.</p>
-		<p><a href="https://www.chartjs.org/" target="_blank">Chart.js</a> - for helping our weather charts look nice.</p>
+		<p><a href="https://www.chartjs.org/" target="_blank">Chart.js</a> - for helping our charts look nice.</p>
 		<p><a href="https://developers.google.com/maps/documentation/places/web-service/overview" target="_blank">Google Places API</a> - for location imagery from the Google Maps Platform.</p>
 
 	</section>
