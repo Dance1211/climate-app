@@ -2,6 +2,7 @@
 	import type { CityDB } from '$lib/types/cities';
 	import type { Coordinates } from '$lib/types/kg-code';
 
+	// Default value for Manchester
 	export let cities = [
 		{
 			location: { type: 'Point', coordinates: [-74.0705, 4.6126] },
