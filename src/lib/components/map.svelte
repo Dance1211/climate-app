@@ -121,9 +121,7 @@
 			style="top: {getMapPositionTop(city.location.coordinates)}%; left: {getMapPositionLeft(
 				city.location.coordinates
 			)}%"
-		>
-			<i class="menuIcon material-icons">{city.city_ascii[0]}</i>
-		</div>
+		/>
 	{/each}
 </section>
 
@@ -142,15 +140,16 @@
 
 	.marker {
 		position: absolute;
+		background-image: url('/images/mapPointer.svg');
 		width: 20px;
 		height: 20px;
 		/* left: 50%;
     top: 50%; */
 		color: white;
-		transform: translate(-50%, -50%);
+		transform: translate(-50%, -100%);
 	}
 
 	.marker:hover {
-    transform: translate(-45%, -45%) scale(1.1) ;
+		transform: translate(-50%, -105%) scale(1.1);
 	}
 </style>
