@@ -2,13 +2,14 @@
 
 /* css variables: global values to be referenced throughout */
 :root {
-	--col-brand-primary: #007ae6;
-	--col-brand-secondary: #1f1f1f; /* use for main text */
-	--col-brand-tertiary: #ff5f00;
-	--col-dividers-borders: #e7e7e7;
-	--col-dividers-borders2: #2797fa;
-	--col-bg: #fff;
-	--font-fam: 'Poppins', sans-serif;
+    --col-brand-primary: #007ae6;
+    --col-brand-secondary: #1f1f1f;  /* use for main text */
+    --col-brand-tertiary: #FF5F00;
+    --col-dividers-borders: #d6d6d6;
+    --col-dividers-borders2: #2797fa;
+    --col-bg: #fff;
+    --col-grad: linear-gradient(180deg, rgb(0, 100, 214) 20%, var(--col-brand-primary) 80% );
+    --font-fam: 'Poppins', sans-serif;
 }
 
 /* global */
@@ -33,6 +34,7 @@ h6 {
 h1 {
 	font-size: 1.875rem; /* 30px default */
 	letter-spacing: -0.07rem;
+	margin-bottom: 1rem;
 }
 h2 {
 	font-size: 1.625rem; /* 26px default */
@@ -46,18 +48,62 @@ a:hover {
 	text-decoration: underline;
 	opacity: 0.7;
 }
+p {
+	margin-bottom: 0.75rem;
+	line-height: 1.5;
+}
+
+/* quick search - 'floating' icon for internal pages - mobile only */
+main a.quick-search {
+	position: fixed;
+	z-index: 9998; /* above everything except na menu */
+	bottom: 0.5rem;
+	right: 0.5rem;
+	width: 54px;
+	height: 54px;
+	background: var(--col-brand-tertiary);
+	color: var(--col-bg);
+	box-shadow: 0px 2px 6px rgba(0,0,0,0.25);
+	display: grid;
+	align-content: center;
+	justify-content: center;
+	border-radius: 50%;
+}
+main a.quick-search i {
+	font-size: 2.25rem; /* 36px default */
+}
+main a.quick-search:hover {
+	text-decoration: none;
+	opacity: 1;
+	background: var(--col-brand-primary);
+}
+
+/* text pages - eg. the 'about page */
+main.text-page { 
+	max-width: 1240px;
+	margin: 100px auto 100px auto;
+	padding: 1rem;
+}
+main.text-page .text-area {
+	max-width: 675px;
+	min-height: 80vh;
+}
+main.text-page h1 {
+	color: var(--col-brand-primary);
+}
+
 
 /* forms */
 form input,
 form textarea,
-form button {
+form button, 
+select {
 	padding: 0.75rem 1rem;
 	font-family: var(--font-fam);
 	font-weight: 400;
 	font-size: 0.875rem; /* 14px default */
 	border: none;
 	width: 100%;
-	/* height: 3.75rem; */
 }
 form label {
 	margin-bottom: 0.3125rem; /* 5px default */
@@ -66,11 +112,15 @@ form label {
 	font-weight: bold;
 	text-align: left;
 }
-form input {
+form input, 
+select {
 	background-color: #f3f3f3;
 	border: 1px solid var(--col-dividers-borders);
 	border-radius: 10px;
 	margin-bottom: 0.75em;
+}
+select {
+	color: #2c2c2c;
 }
 form button {
 	background: var(--col-brand-primary);
@@ -128,4 +178,13 @@ form .invalid {
 }
 form .valid {
 	border-color: seagreen;
+}
+
+/* --------- MEDIA QUERIES FOR LARGER DEVICES---------  */
+
+@media only screen and (min-width: 768px) { 
+  /* quick search - 'floating' icon for internal pages - hide on large devices */
+  main a.quick-search {
+    display: none;
+  }
 }

@@ -24,11 +24,15 @@
 	</ul>
 	<ul class="nav-links-secondary">
 		<li class="menuItem search">
+<<<<<<< HEAD
 			<a href="/search" title="New Search" on:click={closeNav}>
+=======
+			<a href="/" title="New Search">
+>>>>>>> e33cede6785baebc0e9954443d4ae56eb7790eaa
 				<i class="searchIcon material-icons"> search </i>
 			</a>
 		</li>
-		<li class="menuItem account"><a href="/account" title="My Account"> My Account</a></li>
+		<!-- <li class="menuItem account"><a href="/account" title="My Account"> My Account</a></li> -->
 	</ul>
 </nav>
 
@@ -105,6 +109,7 @@
 			grid-gap: 5%;
 			justify-items: end;
 			align-items: center;
+
 		}
 		ul {
 			display: grid;

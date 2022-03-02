@@ -1,4 +1,12 @@
-# create-svelte
+# Styled Search Results branch
+
+Created this branch to transfer the initial HTML & CSS design template into a Svelte page.
+
+Continued from the 'header-and-footer-new' branch, with header and footer styling in place.
+
+
+----------
+# Svelte default instructions below
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
 
