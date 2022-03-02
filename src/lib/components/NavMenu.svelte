@@ -14,11 +14,11 @@
 	</ul>
 	<ul class="nav-links-secondary">
 		<li class="menuItem search">
-			<a href="/search" title="New Search">
+			<a href="/" title="New Search">
 				<i class="searchIcon material-icons"> search </i>
 			</a>
 		</li>
-		<li class="menuItem account"><a href="/account" title="My Account"> My Account</a></li>
+		<!-- <li class="menuItem account"><a href="/account" title="My Account"> My Account</a></li> -->
 	</ul>
 </nav>
 

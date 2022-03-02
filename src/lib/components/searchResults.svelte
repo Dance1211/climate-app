@@ -38,18 +38,21 @@
     <section class="change-search-and-sort">
         
         <p class="change-search">
-            <a title="Change search terms" href="link-to-modify-search">
+            <a title="Change search terms" href="/">
                 <i class="searchIcon material-icons">search </i>Change search
             </a>
         </p>
 
         <div class="sort">
+            <!--currently sorted by population-->
             <label for="sort-by">Sort by</label>
             <select name="sort-by" id="sort-by">
-                <option value="distance-close">Nearest</option>
-                <option value="distance-far">Farthest</option>
+                <!-- <option value="distance-close">Nearest</option>
+                <option value="distance-far">Farthest</option> -->
+                <option value="population">Population</option>
                 <option value="temp-hottest">Hottest</option>
                 <option value="temp-coldest">Coldest</option>
+
             </select>
         </div>
     </section>
