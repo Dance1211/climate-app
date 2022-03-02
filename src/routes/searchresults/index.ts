@@ -19,7 +19,7 @@ export async function get({ url }: LoadInput) {
 			return { weather: cityWeather, details: city, src } as City;
 		})
 	);	
-		
+		console.log(combinedData)
 	return {
 		status: 200,
 		body: {

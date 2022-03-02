@@ -7,7 +7,8 @@
 	} = city;
 </script>
 
-<h1>{cityName}</h1>
+<a href={`/location?place=${city.details.city_ascii}&country=${city.details.country}`}>{cityName}</a
+>
 <h4>Population: {population}</h4>
 <h4>Current Temperature: {temperature}&deg C</h4>
 <h4>Humidity: {humidity} %</h4>
