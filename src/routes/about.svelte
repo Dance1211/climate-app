@@ -10,7 +10,7 @@
 		<p>The user can search for similar destinations around the world, which are categorised using their <a href="https://en.wikipedia.org/wiki/K%C3%B6ppen_climate_classification" target="_blank">Köppen climate classification</a>.</p>
 
 		<h1>Who made it?</h1>
-		<p>The project was developed by a 'Team X' - a group of 5 students on the <a href="https://northcoders.com/" target="_blank">Northcoders Coding Bootcamp</a>. This was their first time working as a group.</p> 
+		<p>The project was developed by a 'Team X' - a group of 5 students on the <a href="https://northcoders.com/" target="_blank">Northcoders</a> Coding Bootcamp. This was their first time working as a group.</p> 
 		<p>Development took place over 8-9 days in February-March 2022.</p>
 
 		<h1>How's it built?</h1>
