@@ -68,7 +68,7 @@
 </svelte:head>
 
 <section class="container">
-	<h2 class="header">Compare travel destinations by climate.</h2>
+	<h1 class="header">Compare travel destinations by climate.</h1>
 
 	<!-- Input form -->
 	<form class="search-form" on:submit|preventDefault={onConfirmSubmit}>
@@ -125,6 +125,11 @@
 		margin-right: 5px;
 	}
 
+	/* form spacing issues - quick fix */
+	label {
+		line-height: 2;
+	}
+
 	/* .warning {
 		color: red;
 	} */
@@ -138,8 +143,8 @@
 
 	/* home - search box - increase heading size */
 	@media only screen and (min-width: 768px) {
-		h2 {
-			font-size: 38px;
+		h1 {
+			font-size: 2.375rem; /* 38px default */
 			margin-bottom: 2rem;
 		}
 	}

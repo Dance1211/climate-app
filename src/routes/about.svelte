@@ -19,7 +19,7 @@
 
 		<h1>How's it built?</h1>
 		<p>The team decided to try out some new technology that was not taught on the course (which was mainly based around JavaScript, Node and React).</p>
-		<p>The app uses the <a href="https://svelte.dev/" target="_blank">Svelte</a> framework, <a href="https://www.typescriptlang.org/" target="_blank">TypeScript</a>, <a href="https://www.mongodb.com" target="_blank">mongoDB</a> for the databases, and various APIs to grab location images and weather data. All brought together with copious amounts of JavaScript, HTML and CSS.</p>
+		<p>The app uses the <a href="https://svelte.dev/" target="_blank">Svelte</a> framework, <a href="https://www.typescriptlang.org/" target="_blank">TypeScript</a>, <a href="https://www.mongodb.com" target="_blank">MongoDB</a> for the databases, and various APIs to grab location images and weather data. All brought together with copious amounts of JavaScript, HTML and CSS.</p>
 
 		<h1>Credits</h1>
 		<p>Thanks to the open source community and various creatives and developers who help make projects like this possible.</p>
