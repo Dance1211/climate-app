@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { koppenZones } from '$lib/types/kg-code.ts';
 	import Chart from '$components/Chart.svelte';
 	export let src: string;
 	export let place: string;
@@ -11,7 +12,7 @@
 	<h1>
 		{place}, {country}
 	</h1>
-	<h2>Climate Zone: {cityInfo[0].details.kgcode}</h2>
+	<h2>Climate Zone: {koppenZones[cityInfo[0].details.kgcode]}</h2>
 	<img {src} alt={place} />
 
 	<h2>Location Data</h2>
@@ -31,6 +32,9 @@
 </div>
 
 <style>
+	.LocationData {
+		margin-top: 75px;
+	}
 	h1 {
 		text-transform: capitalize;
 	}
