@@ -5,7 +5,7 @@ export async function getLatLng(place_id: string) {
 	const baseUrl = 'https://maps.googleapis.com/maps/api/geocode/json';
 	const res = await axios.get(baseUrl, {
 		params: {
-			key: apiKey,
+			key: `AIzaSyDMbyra9BUhuc72_b6sb7BrtIN7RieLBUE`,
 			place_id: place_id
 		}
 	});

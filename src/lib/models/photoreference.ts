@@ -3,7 +3,7 @@ const apiKey = import.meta.env.VITE_API_KEY;
 
 export async function getPhotoRef(place: string) {
 	// call autocomplete API to get place_id
-	const placeIdUrl = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${place}&types=geocode&key=${apiKey}`;
+	const placeIdUrl = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${place}&types=geocode&key=AIzaSyDMbyra9BUhuc72_b6sb7BrtIN7RieLBUE`;
 	const placeIdRes = await axios.get(placeIdUrl);
 	const place_id = placeIdRes.data.predictions[0].place_id;
 
