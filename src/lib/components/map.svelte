@@ -135,6 +135,7 @@
 		background-image: url('/images/mapBackground.png');
 		background-position: center;
 		background-size: cover;
+		/* Aspect ratio is not formally supported in all browsers */
 		aspect-ratio: 2;
 	}
 
@@ -143,8 +144,6 @@
 		background-image: url('/images/mapPointer.svg');
 		width: 20px;
 		height: 20px;
-		/* left: 50%;
-    top: 50%; */
 		color: white;
 		transform: translate(-50%, -100%);
 	}
