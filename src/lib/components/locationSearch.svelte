@@ -6,7 +6,7 @@
 
 	let inputText = { current: '', editing: '' };
 	let active = false;
-	let showSuggestions = true;
+	let showSuggestions = false;
 	let predictions: null | any[] = null;
 
 	const TEMPPREDICTION = [
@@ -74,8 +74,9 @@
 	};
 </script>
 
+<p>{showSuggestions}</p>
 <div class={`locationSearch ${showSuggestions ? "onTop" : ""}`}>
-	<div class="container {active ? 'active' : ''}">
+	<div class={'container' + (active ? ' active' : '')}>
 		<input
 			type="text"
 			{id}
@@ -105,10 +106,6 @@
 		margin-bottom: 0.75em;
 	}
 
-	.onTop * {
-		z-index: 100;
-	}
-
 	.container {
 		position: absolute;
 		z-index: 100;
@@ -127,6 +124,10 @@
 	.active {
 		border: 2px solid var(--col-dividers-borders2);
 		margin: -1px;
+	}
+
+	.onTop {
+		z-index: 400;
 	}
 
 	input {
