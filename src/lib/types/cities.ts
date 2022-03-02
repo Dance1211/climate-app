@@ -20,4 +20,4 @@ export type CityWeather = {
 	icon: string;
 };
 
-export type City = { weather: CityWeather; details: CityDB };
+export type City = { weather: CityWeather; details: CityDB, src: string };
