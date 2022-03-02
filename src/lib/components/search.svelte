@@ -68,7 +68,7 @@
 </script>
 
 <svelte:head>
-	<title>Climate Travel App</title>
+	<title>WhereTo. Compare travel destinations by climate.</title>
 </svelte:head>
 
 <section class="container">
@@ -97,6 +97,7 @@
 
 	<span id="locationError" />
 </section>
+
 
 <style>
 	.container {

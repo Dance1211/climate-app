@@ -95,6 +95,7 @@
 			grid-gap: 5%;
 			justify-items: end;
 			align-items: center;
+
 		}
 		ul {
 			display: grid;

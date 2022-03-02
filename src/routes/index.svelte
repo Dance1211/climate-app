@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Search from '$lib/components/search.svelte';
+	import Footer1 from '$lib/components/footer1Home.svelte';
 	export let bgImage;
 </script>
 
@@ -7,6 +8,7 @@
 	<div class="background-image" style="background-image: url({bgImage});" />
 	<Search />
 </main>
+<Footer1 /> <!-- this version of the footer is for home/search page only. use v2 for 'internal' pages -->
 
 <style>
 	main {
