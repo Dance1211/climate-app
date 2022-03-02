@@ -4,7 +4,7 @@ const apiKey = import.meta.env.VITE_API_KEY;
 export async function get({ params }) {
 	try {
 		const input = params.input;
-		const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&types=geocode&key=AIzaSyDMbyra9BUhuc72_b6sb7BrtIN7RieLBUE`;
+		const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&types=geocode&key=${apiKey}`;
 		const res = await axios.get(url);
 		const predictions = res.data.predictions.map((location) => {
 			return { placeName: location.description, place_id: location.place_id };

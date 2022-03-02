@@ -22,8 +22,10 @@
 	<div class="LocationSuggestions">
 		<h3>You may also like...</h3>
 		{#each cityInfo as city (city.details._id)}
-			<p>{city.details.city}, {city.details.country}</p>
-			<img src={city.src} alt={city.details.city}/>
+			<a href={`/location?place=${city.details.city_ascii}&country=${city.details.country}`}
+				>{city.details.city}, {city.details.country}</a
+			>
+			<img src={city.src} alt={city.details.city} />
 		{/each}
 	</div>
 </div>
