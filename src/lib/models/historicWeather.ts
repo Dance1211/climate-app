@@ -1,9 +1,10 @@
 import axios from 'axios';
 import date from 'date-and-time';
+const historicalKey = import.meta.env.VITE_OIKO_WEATHER_KEY
 
 export async function getHistoricWeather(place: string) {
 	const weather = await axios.get(
-		`https://api.oikolab.com/weather/?param=temperature&start=2021%2F01%2F01&end=2021%2F12%2F01&api-key=d2a9e6514250492f9749ba5b08ff0429&resample_method=mean&freq=M&format=json&location=${place}`
+		`https://api.oikolab.com/weather/?param=temperature&start=2021%2F01%2F01&end=2021%2F12%2F01&api-key=${historicalKey}&resample_method=mean&freq=M&format=json&location=${place}`
 	);
 	const weatherData = JSON.parse(weather.data.data);
 
