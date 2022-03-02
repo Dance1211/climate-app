@@ -48,19 +48,15 @@
 		function showError(error: GeolocationPositionError) {
 			switch (error.code) {
 				case error.PERMISSION_DENIED:
-					errorBox.innerHTML =
-						'User denied the request for Geolocation - default location is set to manchester.';
+					console.log('GEOLOCATION: Location request denied by user - default location set to Manchester, UK');
 					break;
 				case error.POSITION_UNAVAILABLE:
-					errorBox.innerHTML =
-						'Location information is unavailable - default location is set to manchester.';
-					break;
+					console.log('GEOLOCATION: Location request denied by user - default location set to Manchester, UK');
 				case error.TIMEOUT:
-					errorBox.innerHTML =
-						'The request to get user location timed out - default location is set to manchester.';
+					console.log('GEOLOCATION: Location request timed out - default location set to Manchester, UK');
 					break;
 				default:
-					errorBox.innerHTML = 'An unknown error occurred - default location is set to manchester.';
+					console.log('GEOLOCATION: An unknown location error occurred');
 					break;
 			}
 		}
@@ -88,7 +84,7 @@
 
 		<label for="home">
 			My location is
-			<LocationSearch placeholder="City or town..." id="home" bind:placeId={searchQuery.home} />
+			<LocationSearch placeholder="Manchester, UK (default)" id="home" bind:placeId={searchQuery.home} />
 		</label>
 		<button class="search-button" disabled={!searchQuery.location} type="submit">
 			<i class="searchIcon material-icons">search</i> Search
@@ -132,6 +128,13 @@
 	/* .warning {
 		color: red;
 	} */
+
+	/* Location error */
+	#locationError {
+		font-size: 10px;
+		color: #666;
+		margin-top: 0.5rem;
+	}
 
 	/* home - search box - increase heading size */
 	@media only screen and (min-width: 768px) {

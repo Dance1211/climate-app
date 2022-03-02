@@ -69,7 +69,7 @@
 
 
     <!-- floaty 'quick search' icon. to appear on all internal pages -->
-    <a class="quick-search" title="New search" href="quick-search-shortcut">
+    <a class="quick-search" title="New search" href="/">
         <i class="searchIcon material-icons">search </i>
     </a>
 

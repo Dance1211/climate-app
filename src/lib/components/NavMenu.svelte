@@ -12,7 +12,7 @@
 		<li class="menuItem"><a  href="/" title="Home"on:click={closeNav}> Home </a></li>
 		<li class="menuItem">
 			<a
-				href="/profile/my-locations"
+				href="/my-locations"
 				title="Saved Locations"
 				on:click={closeNav}
 				>My Locations
@@ -24,7 +24,7 @@
 	</ul>
 	<ul class="nav-links-secondary">
 		<li class="menuItem search">
-			<a href="/search" title="New Search" on:click={closeNav}>
+			<a href="/" title="New Search" on:click={closeNav}>
 				<i class="searchIcon material-icons"> search </i>
 			</a>
 		</li>
