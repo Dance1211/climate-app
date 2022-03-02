@@ -26,7 +26,7 @@
 	const onConfirmSubmit = async (): Promise<void> => {
 		destinationLocation = await coordinateFetch(searchQuery.location);
 		if (destinationLocation && userLocation) {
-			const searchUrl = `/searchresults?lat=${destinationLocation[0]}&lng=${destinationLocation[1]}&userlat=${userLocation[0]}&userlng=${userLocation[1]}`;
+			const searchUrl = `/searchresults&lat=${destinationLocation[0]}&lng=${destinationLocation[1]}&userlat=${userLocation[0]}&userlng=${userLocation[1]}`;
 			goto(searchUrl);
 		} else {
 			// Error handling component here
@@ -131,12 +131,4 @@
 	/* .warning {
 		color: red;
 	} */
-
-	/* home - search box - increase heading size */
-	@media only screen and (min-width: 768px) {
-		h2 {
-			font-size: 38px;
-			margin-bottom: 2rem;
-		}
-	}
 </style>
