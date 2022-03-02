@@ -4,7 +4,7 @@
 
 
 <svelte:head>
-	<title>Search Results</title>
+	<title>Search Results | WhereTo.</title>
 </svelte:head>
 
 

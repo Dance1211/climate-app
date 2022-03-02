@@ -2,6 +2,10 @@
 	import Footer2 from '$lib/components/footer2Internal.svelte';
 </script>
 
+<svelte:head>
+	<title>About | WhereTo.</title>
+</svelte:head>
+
 
 <main class="text-page">
 	<section class="text-area">

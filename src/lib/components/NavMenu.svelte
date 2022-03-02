@@ -15,7 +15,7 @@
 				href="/my-locations"
 				title="Saved Locations"
 				on:click={closeNav}
-				>My Locations
+				>My Places
 			</a>
 		</li>
 		<li class="menuItem">
