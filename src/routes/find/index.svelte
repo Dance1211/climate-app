@@ -7,7 +7,7 @@
 	let longitude = 0;
 	let latitude = 0;
 	let cities: CityDB[] = [];
-	
+
 	const handleSubmit = async () => {
 		const codeResponse = await fetch(`/api/kgcode?longitude=${longitude}&latitude=${latitude}`, {
 			method: 'GET'

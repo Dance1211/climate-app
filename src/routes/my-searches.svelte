@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Footer2 from '$lib/components/footer2Internal.svelte';
+
 </script>
 
 <svelte:head>
@@ -72,8 +72,6 @@
 	</section>
 
 </main>
-
-<Footer2 /><!-- this version of footer is for 'internal' pages -->
 
 <style>
 	h1 {
