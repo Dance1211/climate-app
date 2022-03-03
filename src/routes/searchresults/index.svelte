@@ -15,6 +15,10 @@
 <!-- pass city obj as prop -->
 <Map cities={mapCoord} />
 <h1>Climate Zone: {koppenZones[combinedData[0].details.kgcode]}</h1>
-{#each combinedData as city}
-	<WeatherCard {city} />
+{#each combinedData as city, index}
+	<WeatherCard {index} {city} />
 {/each}
+
+<style>
+
+</style>
