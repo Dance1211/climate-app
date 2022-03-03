@@ -23,7 +23,7 @@ export async function get({ url }: LoadInput) {
 		cities.map(async (city) => {
 			const cityWeather = await getWeather(city.city_ascii);
 			const { photo_reference } = await getPhotoRef(city.city_ascii);
-			const src = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_reference}&key=AIzaSyDMbyra9BUhuc72_b6sb7BrtIN7RieLBUE`;
+			const src = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_reference}&key=${process.env['VITE_API_KEY']}`;
 
 			return { weather: cityWeather, details: city, src } as City;
 		})

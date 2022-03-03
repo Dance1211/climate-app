@@ -2,7 +2,7 @@
 	export let placeholder: string;
 	export let id: string;
 	export let placeId: null | string = null;
-  export let required: boolean = false;
+	export let required: boolean = false;
 	let inputText = { current: '', editing: '' };
 	let active = false;
 	let showSuggestions = false;
@@ -33,6 +33,8 @@
 		const res = await fetch(`/api/destination/${location}`);
 		if (res.status === 200) {
 			const resObject = await res.json();
+			console.log(resObject);
+
 			predictions = resObject.predictions;
 			placeId = resObject.place_id;
 		} else {
@@ -54,7 +56,11 @@
 		if (inputText.current !== inputText.editing) {
 			showSuggestions = true;
 			inputText.current = inputText.editing;
-			placeIdFetch(inputText.current);
+			try {
+				placeIdFetch(inputText.current);
+			} catch (error) {
+				console.log(error);
+			}
 		}
 		active = false;
 	};
@@ -66,7 +72,8 @@
 		};
 	};
 </script>
-<div class={`locationSearch ${showSuggestions ? "onTop" : ""}`}>
+
+<div class={`locationSearch ${showSuggestions ? 'onTop' : ''}`}>
 	<div class={'container' + (active ? ' active' : '')}>
 		<input
 			type="text"
@@ -76,7 +83,7 @@
 			on:focus={handleInputFocus}
 			on:blur={handleInputBlur}
 			on:keyup={handleInputEnter}
-			required={required}
+			{required}
 		/>
 		{#if predictions?.length && showSuggestions}
 			<ul class="suggestionContainer">
@@ -89,6 +96,7 @@
 		{/if}
 	</div>
 </div>
+
 <style>
 	.locationSearch {
 		position: relative;
