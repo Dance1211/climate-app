@@ -135,7 +135,7 @@
 		max-height: 100vh;
 		background-image: url('/images/mapBackground.png');
 		background-position: center;
-		background-size: cover;
+		background-size: contain;
 		/* Aspect ratio is not formally supported in all browsers */
 		aspect-ratio: 2;
 	}
