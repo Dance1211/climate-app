@@ -127,7 +127,6 @@
 
 <style>
 	.map {
-		margin-top: 60px;
 		position: relative;
 		width: 100%;
 		max-width: 100vw;

@@ -3,13 +3,16 @@ import { getCitiesSimilarToLocation } from '$lib/models/cities';
 import { getWeather } from '$lib/models/weather';
 import type { City, CityDB } from '$lib/types/cities';
 import { getPhotoRef } from '$lib/models/photoreference';
+import type { Coordinates } from '$lib/types/kg-code';
+import { getNearestKGCode } from '$lib/models/kg-code';
 
 export async function get({ url }: LoadInput) {
-	const lat = +url.searchParams.get('lat') || 53.48;
 	const lng = +url.searchParams.get('lng') || 2.24;
-
-
+	const lat = +url.searchParams.get('lat') || 53.48;
 	let cities: CityDB[];
+
+	const kgCode = await getNearestKGCode([lng, lat]);
+
 	try {
 		cities = await getCitiesSimilarToLocation([lng, lat], {});
 	} catch (error) {
@@ -29,7 +32,9 @@ export async function get({ url }: LoadInput) {
 	return {
 		status: 200,
 		body: {
-			combinedData
+			coordinates: [lng, lat] as Coordinates,
+			combinedData,
+			kgCode
 		}
 	};
 }
