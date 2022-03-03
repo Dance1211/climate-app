@@ -8,8 +8,8 @@
 	export let kgCode: KGCode = null;
 	export let combinedData: City[];
 	export let coordinates: Coordinates;
-	const mapCoord = combinedData.map((data) => {
-		return data.details;
+	const mapCoord = combinedData.map((data, index) => {
+		return { details: data.details, index};
 	});
 </script>
 
