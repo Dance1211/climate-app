@@ -1,8 +1,11 @@
-# Styled Search Results branch
+# final-app-with-styling branch
 
-Created this branch to transfer the initial HTML & CSS design template into a Svelte page.
+This branch merges all latest files from SearchRes/Location-FINAL with those from styled-search-results.
 
-Continued from the 'header-and-footer-new' branch, with header and footer styling in place.
+#### To do 2 March 
+- J.B. to check we have latest homepage files - search not currently working correctly and displaying 'false' messages
+- latest search results/maps functionality needs blending in with layout and css from src/routes/search-results-template.svelte.
+- location route needs styling up. have a rough template ready for this in a separate repo.
 
 
 ----------
