@@ -2,8 +2,6 @@
 	import Search from '$lib/components/search.svelte';
 	import Footer1 from '$lib/components/footer1Home.svelte';
 	export let bgImage;
-	
-	import Map from '$lib/components/map.svelte';
 </script>
 
 <main>

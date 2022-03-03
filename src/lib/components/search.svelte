@@ -26,7 +26,7 @@
 	const onConfirmSubmit = async (): Promise<void> => {
 		destinationLocation = await coordinateFetch(searchQuery.location);
 		if (destinationLocation && userLocation) {
-			const searchUrl = `/searchresults&lat=${destinationLocation[0]}&lng=${destinationLocation[1]}&userlat=${userLocation[0]}&userlng=${userLocation[1]}`;
+			const searchUrl = `/searchresults?lat=${destinationLocation[0]}&lng=${destinationLocation[1]}&userlat=${userLocation[0]}&userlng=${userLocation[1]}`;
 			goto(searchUrl);
 		} else {
 			// Error handling component here

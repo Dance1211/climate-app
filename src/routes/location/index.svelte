@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { koppenZones } from '$lib/types/kg-code.ts';
+	import { koppenZones } from '$lib/types/kg-code';
 	import Chart from '$components/Chart.svelte';
 	export let src: string;
 	export let place: string;
