@@ -1,5 +1,15 @@
 <script lang="ts">
+	import type { LoadInput, LoadOutput } from '@sveltejs/kit';
 	const year = new Date().getFullYear();
+
+	export async function load({ url }: LoadInput): Promise<LoadOutput> {
+		return {
+			status: 200,
+			props: {
+				isHomePage: url.pathname == '/'
+			}
+		};
+	}
 </script>
 
 <footer>
@@ -22,12 +32,11 @@
 	footer p {
 		font-size: 0.75rem; /* 12px default */
 		margin-bottom: 0;
-		padding: .5rem 0;
+		padding: 0.5rem 0;
 	}
 	footer p .divider {
-		margin:0 0.5em;
+		margin: 0 0.5em;
 		color: var(--col-bg);
 		opacity: 0.35;
-	} 
-
+	}
 </style>
