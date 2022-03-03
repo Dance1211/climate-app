@@ -11,8 +11,5 @@ export async function getPhotoRef(place: string) {
 	const photoRes = await axios.get(photoRefUrl, { params: { key: process.env['VITE_API_KEY'], place_id } });
 	const photo_reference = photoRes.data.result.photos[0].photo_reference;
 
-	console.log(photoRes);
-	console.log(photo_reference);
-
 	return { photo_reference, place_id };
 }

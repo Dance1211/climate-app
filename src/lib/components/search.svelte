@@ -29,7 +29,6 @@
 			const searchUrl = `/searchresults?lat=${destinationLocation[0]}&lng=${destinationLocation[1]}&userlat=${userLocation[0]}&userlng=${userLocation[1]}`;
 			goto(searchUrl);
 		} else {
-			// Error handling component here
 			console.log('invalid location result');
 		}
 	};

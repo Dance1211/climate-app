@@ -33,12 +33,9 @@
 		const res = await fetch(`/api/destination/${location}`);
 		if (res.status === 200) {
 			const resObject = await res.json();
-			console.log(resObject);
-
 			predictions = resObject.predictions;
 			placeId = resObject.place_id;
 		} else {
-			console.log('in the error');
 			predictions = TEMPPREDICTION;
 			placeId = 'TEMPPLACEID';
 		}
