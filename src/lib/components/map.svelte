@@ -109,7 +109,6 @@
 	const getMapPositionLeft = (coordinates: Coordinates): number => {
 		return (coordinates[0] + 180) / 3.6;
 	};
-    
 	const getMapPositionTop = (coordinates: Coordinates): number => {
 		return (90 - coordinates[1]) / 1.8;
 	};
@@ -141,7 +140,10 @@
 	}
 	.marker {
 		position: absolute;
-		background-image: url('/images/mapPointer.svg');
+		background-image: url('/images/map-marker_orange.svg');
+		background-position: center bottom;
+		background-repeat: no-repeat;
+		background-size: contain;
 		width: 20px;
 		height: 20px;
 		color: white;
