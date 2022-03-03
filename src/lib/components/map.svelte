@@ -20,7 +20,7 @@
 			style="top: {getMapPositionTop(city.details.location.coordinates)}%; left: {getMapPositionLeft(
 				city.details.location.coordinates
 			)}%"
-		>{city.index}</div>
+		>{city.index+1}</div>
 	{/each}
 </section>
 

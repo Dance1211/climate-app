@@ -14,7 +14,7 @@ export async function get({ url }: LoadInput) {
 	const kgCode = await getNearestKGCode([lng, lat]);
 
 	try {
-		cities = await getCitiesSimilarToLocation([lng, lat], {});
+		cities = await getCitiesSimilarToLocation([lng, lat], { limit: 9 });
 	} catch (error) {
 		console.log(error);
 	}

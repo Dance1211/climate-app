@@ -18,9 +18,12 @@
 	<section class="intro">
 		<div class="text-area">
 			<h1>
-				Places like <strong>{coordinates}</strong>
+				Places like <strong>
+					Cairo <small>- Egypt</small>
+					<!-- {coordinates} -->
+				</strong>
 			</h1>
-			<p class="climate-zone">{koppenZones[kgCode]}</p>
+			<p class="climate-zone">{koppenZones[kgCode]} climate</p>
 		</div>
 	</section>
 
@@ -101,6 +104,10 @@
 		font-weight: bold;
 		display: block;
 		font-size: 2.25rem; /* 36px default */
+	}
+	main.search-results .intro h1 small {
+		font-weight: normal;
+		font-size: 1.25rem;
 	}
 	main.search-results .intro p.climate-zone {
 		font-size: 0.75rem; /* 12px default */
