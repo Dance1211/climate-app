@@ -2,7 +2,6 @@
 	import '$lib/css/styles-basic-reset.css';
 	import '$lib/css/styles-main.css';
 	import Header from '$lib/components/Header.svelte';
-	import Footer from '$lib/components/footer1Home.svelte';
 </script>
 
 <Header />

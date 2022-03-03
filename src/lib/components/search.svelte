@@ -48,15 +48,16 @@
 		function showError(error: GeolocationPositionError) {
 			switch (error.code) {
 				case error.PERMISSION_DENIED:
-					console.log('GEOLOCATION: Location request denied by user - default location set to Manchester, UK');
+                    console.log('GEOLOCATION: Location request denied by user - default location set to Manchester, UK');
 					break;
 				case error.POSITION_UNAVAILABLE:
-					console.log('GEOLOCATION: Location request denied by user - default location set to Manchester, UK');
+                    console.log('GEOLOCATION: Location request denied by user - default location set to Manchester, UK');
+					break;
 				case error.TIMEOUT:
-					console.log('GEOLOCATION: Location request timed out - default location set to Manchester, UK');
+                    console.log('GEOLOCATION: Location request timed out - default location set to Manchester, UK');
 					break;
 				default:
-					console.log('GEOLOCATION: An unknown location error occurred');
+                    console.log('GEOLOCATION: An unknown location error occurred');
 					break;
 			}
 		}
@@ -94,7 +95,6 @@
 	<span id="locationError" />
 </section>
 
-
 <style>
 	.container {
 		z-index: 0;
@@ -108,33 +108,25 @@
 		text-align: center;
 		margin: 30px auto 0 auto; /* align to center vertically */
 	}
-
 	.header {
 		margin-bottom: 1rem;
 	}
-
 	.search-button {
 		display: grid;
 		grid-template-columns: auto auto;
 		align-items: center;
 		text-align: left;
 	}
-
 	.search-button i {
 		text-align: right;
 		margin-right: 5px;
 	}
-
-	/* form spacing issues - quick fix */
+    /* form spacing issues - quick fix */
 	label {
 		line-height: 2;
 	}
 
-	/* .warning {
-		color: red;
-	} */
-
-	/* Location error */
+    /* Location error */
 	#locationError {
 		font-size: 10px;
 		color: #666;

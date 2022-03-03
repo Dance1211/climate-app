@@ -1,4 +1,5 @@
-import { getNearestKGCode } from '$lib/models/kg-code';
+import { getCitiesSimilarToLocation } from '$lib/models/cities';
+import type { CityDB } from '$lib/types/cities';
 import type { KGCode } from '$lib/types/kg-code';
 import type { LoadInput } from '@sveltejs/kit';
 
@@ -6,11 +7,12 @@ export async function get({ url }: LoadInput) {
 	const longitude: number = +url.searchParams.get('longitude');
 	const latitude: number = +url.searchParams.get('latitude');
 
-	let kgCode: KGCode;
+	let cities: CityDB[];
 
 	try {
-		kgCode = await getNearestKGCode([longitude, latitude]);
+		cities = await getCitiesSimilarToLocation([longitude, latitude], {});
 	} catch (error) {
+		console.log("Couldn't get cities");
 		return {
 			status: 500,
 			body: {
@@ -22,7 +24,7 @@ export async function get({ url }: LoadInput) {
 	return {
 		status: 200,
 		body: {
-			kgCode
+			cities
 		}
 	};
 }
