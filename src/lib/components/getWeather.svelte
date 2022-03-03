@@ -2,8 +2,6 @@
 	const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
 	const gmapsKey = import.meta.env.VITE_GMAPS_KEY;
 	import axios from 'axios';
-
-	console.log(apiKey);
 	let loading = false;
 	let data: boolean = false;
 	let city = '';
@@ -13,7 +11,6 @@
 	let wind: string = '';
 	let description: string = '';
 	let icon: any;
-
 	const fetchWeather = () => {
 		axios
 			.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=Metric`)
@@ -87,10 +84,8 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
-
 		height: 50vh;
 	}
-
 	.map {
 		border-radius: 32px;
 		width: 80vw;
@@ -105,12 +100,10 @@
 		text-align: center;
 		font-size: 1.5rem;
 	}
-
 	.weather-Data-Now {
 		margin-top: 40px;
 		list-style: none;
 	}
-
 	.weather-icon {
 		height: 15rem;
 	}

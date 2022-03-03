@@ -36,4 +36,8 @@
 		color: var(--col-bg);
 		font-weight: bold;
 	}
+	
+
+
+	
 </style>

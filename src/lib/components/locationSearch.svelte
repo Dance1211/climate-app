@@ -3,12 +3,10 @@
 	export let id: string;
 	export let placeId: null | string = null;
   export let required: boolean = false;
-
 	let inputText = { current: '', editing: '' };
 	let active = false;
 	let showSuggestions = false;
 	let predictions: null | any[] = null;
-
 	const TEMPPREDICTION = [
 		{
 			place_id: 'abc1',
@@ -31,7 +29,6 @@
 			placeName: 'placename 5'
 		}
 	];
-
 	const placeIdFetch = async (location: string) => {
 		const res = await fetch(`/api/destination/${location}`);
 		if (res.status === 200) {
@@ -44,18 +41,15 @@
 			placeId = 'TEMPPLACEID';
 		}
 	};
-
 	const handleInputFocus = (): void => {
 		active = true;
 	};
-
 	const handleInputEnter = (event): void => {
 		if (event?.key === 'Enter') {
 			event.currentTarget.blur();
 			handleInputBlur();
 		}
 	};
-
 	const handleInputBlur = (): void => {
 		if (inputText.current !== inputText.editing) {
 			showSuggestions = true;
@@ -64,7 +58,6 @@
 		}
 		active = false;
 	};
-
 	const handleSuggestionClick = (prediction) => {
 		return () => {
 			placeId = prediction.place_id;
@@ -73,8 +66,6 @@
 		};
 	};
 </script>
-
-<p>{showSuggestions}</p>
 <div class={`locationSearch ${showSuggestions ? "onTop" : ""}`}>
 	<div class={'container' + (active ? ' active' : '')}>
 		<input
@@ -98,14 +89,12 @@
 		{/if}
 	</div>
 </div>
-
 <style>
 	.locationSearch {
 		position: relative;
 		height: 3rem;
 		margin-bottom: 0.75em;
 	}
-
 	.container {
 		position: absolute;
 		z-index: 100;
@@ -120,16 +109,13 @@
 		margin-bottom: 0.75em;
 		overflow: hidden;
 	}
-
 	.active {
 		border: 2px solid var(--col-dividers-borders2);
 		margin: -1px;
 	}
-
 	.onTop {
 		z-index: 400;
 	}
-
 	input {
 		background-color: transparent;
 		background-color: #f3f3f3;
@@ -137,19 +123,16 @@
 		border-radius: 0;
 		margin: 0;
 	}
-
 	input:-webkit-autofill,
 	input:-webkit-autofill:hover,
 	input:-webkit-autofill:focus {
 		/* Disable coloured background on autofilled items */
 		transition: background-color 5000s ease-in-out 0s;
 	}
-
 	input:focus {
 		border-color: var(--col-dividers-borders2);
 		outline: none;
 	}
-
 	.suggestion button {
 		background-color: transparent;
 		text-align: left;
