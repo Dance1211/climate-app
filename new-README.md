@@ -5,6 +5,10 @@
 ![image](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
 ![image](	https://img.shields.io/badge/Chart.js-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white)
 
+### Demo
+
+![whereto Demo](https://user-images.githubusercontent.com/83911563/156892093-60dc54c8-f4ae-4f42-acb4-e4f9b92d3d2c.gif)
+
 ## Built by Team X
 
 - Ben Weston [Github](https://github.com/benwestondigital)
