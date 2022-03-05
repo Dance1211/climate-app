@@ -15,7 +15,7 @@
 
 ## Description
 
-This app was completed in 2 week period as the final project of the [Northcoders](https://northcoders.com/) software development bootcamp. The website uses the [Köppen climate classification system](https://en.wikipedia.org/wiki/K%C3%B6ppen_climate_classification) to serve the user with countries that are similar to their input destination.
+This app was completed in 2 week period as the final project of the [Northcoders](https://northcoders.com/) software development bootcamp. The website uses the [Köppen climate classification system](https://en.wikipedia.org/wiki/K%C3%B6ppen_climate_classification) to serve the user with locations that are similar to their input destination.
 
 The app uses a non-relational database to store information about the climate zones and their corresponding latitude/longitude values, and also cities and their lat/lng values. External APIs are used to grab relevant pictures, current weather, and historical weather.
 
