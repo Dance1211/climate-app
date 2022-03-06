@@ -14,7 +14,7 @@
     <section class="intro">
         <div class="text-area">
             <h1>    
-                Places like <strong>Cairo</strong>
+                Places like <strong>Melbourne</strong>
             </h1>
             <p class="climate-zone">Hot Desert Climate</p>
         </div>

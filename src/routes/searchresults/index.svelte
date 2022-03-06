@@ -19,7 +19,7 @@
 		<div class="text-area">
 			<h1>
 				Places like <strong>
-					Cairo <small>- Egypt</small>
+					Melbourne <small style="display: block;">- Australia</small>
 					<!-- {coordinates} -->
 				</strong>
 			</h1>

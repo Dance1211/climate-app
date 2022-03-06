@@ -67,6 +67,10 @@
 
 	</section>
 
+	<a class="quick-search" title="New search" href="/">
+		<i class="searchIcon material-icons">search </i>
+	</a>
+
 
 </main>
 
