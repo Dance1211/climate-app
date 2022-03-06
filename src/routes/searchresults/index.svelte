@@ -14,6 +14,7 @@
 </script>
 
 <main class="search-results">
+
 	<!-- location intro -->
 	<section class="intro">
 		<div class="text-area">
@@ -39,14 +40,14 @@
 		</p>
 
 		<div class="sort">
-			<!--currently sorted by population-->
+
+			<!-- results sorted by population as default -->
+			<!-- other sorting options yet to be implemented -->
 			<label for="sort-by">Sort by</label>
 			<select name="sort-by" id="sort-by">
-				<!-- <option value="distance-close">Nearest</option>
-						<option value="distance-far">Farthest</option> -->
 				<option value="population">Population</option>
-				<option value="temp-hottest">Hottest</option>
-				<option value="temp-coldest">Coldest</option>
+				<option value="temp-hottest">Hottest</option> <!--not yet implemented-->
+				<option value="temp-coldest">Coldest</option> <!--not yet implemented-->
 			</select>
 		</div>
 	</section>
@@ -65,8 +66,7 @@
 
 <style>
 	/* styles used for this specific page */
-
-	/* note: may have duplicated some 'global' styles here and there (could use a clean up later), but for demo purposes who cares */
+	/* note: may have duplicated some 'global' styles here and there (could use a clean up later)*/
 
 	/* search results page */
 	main.search-results section {

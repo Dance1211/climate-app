@@ -23,19 +23,14 @@
 
 			<img {src} alt={place} />
 		</div>
-
-		
 	</section>
-
-	<!-- <h2>Climate Zone: {koppenZones[cityInfo[0].details.kgcode]}</h2> -->
-	<!-- <img {src} alt={place} /> -->
 
 	<section class="graph-holder">
 		<div class="content">
 			<h3>Average temperature (&#8451;)</h3>
-			<!-- Imported graph stretches to 100% width -->
+
+			<!-- Graph showing historical weather data - using charts.js -->
 			<div class="TempGraph">
-				<!-- REMEMBER TO REINSTATE THIS -->
 				<Chart {weather} />
 			</div>
 		</div>
@@ -195,7 +190,5 @@
 			grid-template-columns: 70% auto;
 			gap: 3%;
 		} */
-
-  	
 	}
 </style>
