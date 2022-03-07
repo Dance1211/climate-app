@@ -27,15 +27,11 @@
 		
 	</section>
 
-	<!-- <h2>Climate Zone: {koppenZones[cityInfo[0].details.kgcode]}</h2> -->
-	<!-- <img {src} alt={place} /> -->
-
 	<section class="graph-holder">
 		<div class="content">
 			<h3>Average temperature (&#8451;)</h3>
 			<!-- Imported graph stretches to 100% width -->
 			<div class="TempGraph">
-				<!-- REMEMBER TO REINSTATE THIS -->
 				<Chart {weather} />
 			</div>
 		</div>
