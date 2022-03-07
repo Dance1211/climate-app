@@ -8,6 +8,8 @@
 	export let kgCode: KGCode = null;
 	export let combinedData: City[];
 	export let coordinates: Coordinates;
+	export let placeName = 'placeholder';
+	export let country = 'placeholder';
 	const mapCoord = combinedData.map((data, index) => {
 		return { details: data.details, index};
 	});
@@ -19,7 +21,7 @@
 		<div class="text-area">
 			<h1>
 				Places like <strong>
-					Cairo <small>- Egypt</small>
+					{placeName} <small>- {country}</small>
 					<!-- {coordinates} -->
 				</strong>
 			</h1>
