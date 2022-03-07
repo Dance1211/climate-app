@@ -5,10 +5,16 @@ import type { City, CityDB } from '$lib/types/cities';
 import { getPhotoRef } from '$lib/models/photoreference';
 import type { Coordinates } from '$lib/types/kg-code';
 import { getNearestKGCode } from '$lib/models/kg-code';
+import { countryCode } from '$lib/types/kg-code';
 
 export async function get({ url }: LoadInput) {
 	const lng = +url.searchParams.get('lng') || 2.24;
 	const lat = +url.searchParams.get('lat') || 53.48;
+	const placeName = url.searchParams.get('destination');
+	const countryShort = url.searchParams.get('country');
+
+	const country = countryCode[countryShort];
+
 	let cities: CityDB[];
 
 	const kgCode = await getNearestKGCode([lng, lat]);
@@ -18,7 +24,7 @@ export async function get({ url }: LoadInput) {
 	} catch (error) {
 		console.log(error);
 	}
-	
+
 	const combinedData = await Promise.all(
 		cities.map(async (city) => {
 			const cityWeather = await getWeather(city.city_ascii);
@@ -34,7 +40,9 @@ export async function get({ url }: LoadInput) {
 		body: {
 			coordinates: [lng, lat] as Coordinates,
 			combinedData,
-			kgCode
+			kgCode,
+			placeName,
+			country
 		}
 	};
 }
