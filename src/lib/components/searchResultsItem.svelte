@@ -26,7 +26,7 @@
                 </div>
             </div>
 
-            <img class="location-image" src="./images/locations/location-dummy-img-las-vegas-usa.png" alt="Destination photo"> 
+            <img class="location-image" src="./images/locations/location-dummy-img-las-vegas-usa.png" alt="Destination"> 
         </section>
 
     </a>
