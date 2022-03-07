@@ -11,8 +11,21 @@
 	export let placeName = 'placeholder';
 	export let country = 'placeholder';
 	const mapCoord = combinedData.map((data, index) => {
-		return { details: data.details, index};
+		return { details: data.details, index };
 	});
+
+	const handleSelect = (e) => {
+		let sort = e.target.value;
+		combinedData = combinedData.sort((a, b) => {
+			if (sort === 'temp-coldest') {
+				return a.weather.temp - b.weather.temp;
+			} else if (sort === 'temp-hottest') {
+				return b.weather.temp - a.weather.temp;
+			} else if (sort === 'population') {
+				return b.details.population - a.details.population;
+			}
+		});
+	};
 </script>
 
 <main class="search-results">
@@ -43,7 +56,7 @@
 		<div class="sort">
 			<!--currently sorted by population-->
 			<label for="sort-by">Sort by</label>
-			<select name="sort-by" id="sort-by">
+			<select on:change={handleSelect} name="sort-by" id="sort-by">
 				<!-- <option value="distance-close">Nearest</option>
 						<option value="distance-far">Farthest</option> -->
 				<option value="population">Population</option>
@@ -54,7 +67,7 @@
 	</section>
 
 	<section class="results-items">
-		{#each combinedData as city, index}
+		{#each combinedData as city, index (city.details._id)}
 			<WeatherCard {index} {city} />
 		{/each}
 	</section>
@@ -62,7 +75,6 @@
 	<a class="quick-search" title="New search" href="/">
 		<i class="searchIcon material-icons">search </i>
 	</a>
-
 </main>
 
 <style>
