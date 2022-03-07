@@ -28,7 +28,7 @@
 
 				<div class="item temperature-humidity">
 					<img
-						src = "./images/amcharts_weather_icons_1.0.0/animated/rainy-7.svg"
+						alt="humidity icon" src = "./images/amcharts_weather_icons_1.0.0/animated/rainy-7.svg"
 					/>
 					<p>Humidity <strong>{humidity}%</strong></p>
 				</div>
