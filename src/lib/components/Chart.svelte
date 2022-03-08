@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Chart from 'chart.js/auto';
+	import Chart, { type ChartItem } from 'chart.js/auto';
 	import { onMount } from 'svelte';
-	export let weather;
-	let ctx;
+	export let weather: any[];
+	let ctx: ChartItem;
     
 	onMount(async () => {
 		const myChart = new Chart(ctx, {
