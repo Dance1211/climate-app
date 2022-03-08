@@ -16,7 +16,6 @@ export async function getCitiesSimilarToLocation(
 		minDistanceMeters?: number;
 	}
 ): Promise<CityDB[]> {
-	console.log(limit, page, minDistanceMeters);
 
 	// database connection
 	const clientConnection: MongoClient = await clientPromise;
@@ -25,8 +24,6 @@ export async function getCitiesSimilarToLocation(
 
 	// Get current KG code to find similar places
 	const currCode = await getNearestKGCode(coordinates);
-
-	console.log(currCode);
 
 	let cities: CityDB[];
 	try {
