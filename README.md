@@ -1,51 +1,65 @@
-# final-app-with-styling branch
+# whereto - Climate-based Travel App
 
-This branch merges all latest files from SearchRes/Location-FINAL with those from styled-search-results.
+![image](https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00)
+![image](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![image](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+![image](	https://img.shields.io/badge/Chart.js-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white)
 
-#### To do 2 March 
-- J.B. to check we have latest homepage files - search not currently working correctly and displaying 'false' messages
-- latest search results/maps functionality needs blending in with layout and css from src/routes/search-results-template.svelte.
-- location route needs styling up. have a rough template ready for this in a separate repo.
+## Built by Team X
 
+- Ben Weston [Github](https://github.com/benwestondigital)
+- Elliot Robertson [Github](https://github.com/ellriffs)
+- Chris Hunger [Github](https://github.com/CH-DD)
+- Josh Banister [Github](https://github.com/Dance1211)
+- Oliver Jim [Github](https://github.com/oliverj95)
 
-----------
-# Svelte default instructions below
+## Description
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+This app was completed in 2 week period as the final project of the [Northcoders](https://northcoders.com/) software development bootcamp. The website uses the [Köppen climate classification system](https://en.wikipedia.org/wiki/K%C3%B6ppen_climate_classification) to serve the user with countries that are similar to their input destination.
 
-## Creating a project
+The app uses a non-relational database to store information about the climate zones and their corresponding latitude/longitude values, and also cities and their lat/lng values. External APIs are used to grab relevant pictures, current weather, and historical weather.
 
-If you're seeing this, you've probably already done this step. Congrats!
+### Technology Used
 
-```bash
-# create a new project in the current directory
-npm init svelte@next
+For this project we decided to use entirely new tech, embracing technology that is highly rated by developers.
 
-# create a new project in my-app
-npm init svelte@next my-app
-```
+- Front End: Svelte
+- Back End: Svelte Kit
+- Database: MongoDB
+- Language: TypeScript
 
-> Note: the `@next` is temporary
+## Setting up / Installation Requirements
 
-## Developing
+### Prerequisites
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+- Node.js 17.x [Node.js](https://nodejs.org/en/)
 
-```bash
-npm run dev
+## Installation
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+### Cloning
 
-## Building
+Download the project into a local folder -
 
-To create a production version of your app:
+- In your terminal:
 
-```bash
-npm run build
-```
+  `$ git clone https://github.com/Dance1211/climate-app.git`
 
-You can preview the production build with `npm run preview`.
+  `$ cd climate-app`
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+- The dependencies can be installed by running the command:
+
+  `$ npm install`
+
+## Running the Application
+
+- Once installed, the website can by run locally via:
+
+  `$ npm start`
+
+which will load up the website in your browser.
+
+---
+
+## Links
+
+The public link to the website can be found at: [Netlify](add link here)
