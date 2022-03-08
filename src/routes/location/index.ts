@@ -28,6 +28,6 @@ export async function get({ url }: LoadInput) {
 
 	return {
 		status: 200,
-		body: { src, place, country, weather, cities, cityInfo }
+		body: { src, place, country, weather, cityInfo }
 	};
 }
