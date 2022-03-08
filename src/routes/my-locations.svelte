@@ -7,6 +7,7 @@
 
 <main class="text-page my-locations">
 	<section class="text-area">
+		<h3>Mockup of Saved Places page.</h3>
 		<h1>My Places  
 			<!-- <span class="material-icons">
 			place
