@@ -3,8 +3,8 @@
 	export let city: City;
 	export let index: number;
 	const {
-		details: { city: cityName, population, iso3 },
-		weather: { temp: temperature, humidity, wind, icon: weatherIcon },
+		details: { city: cityName, iso3 },
+		weather: { temp: temperature, humidity, icon: weatherIcon },
 		src
 	} = city;
 </script>
@@ -15,7 +15,6 @@
 			<h4 class="number">{index + 1}</h4>
 			<h2>{cityName} <span class="country">{iso3}</span></h2>
 		</section>
-		<!-- <h4>Population: {population}</h4> -->
 		<section class="weather-data-and-img">
 			<div class="weather-data">
 				<div class="item temperature-current">
