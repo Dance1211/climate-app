@@ -22,9 +22,7 @@
 </footer>
 
 <style>
-	/* footer styles are slightly different on internal pages - not 'sticky' like the home/search page version */
-
-	footer {
+	/* footer styles are slightly different on internal pages - not 'sticky' like the home/search page version */	footer {
 		width: 100%;
 		text-align: center;
 		padding: 0 1rem;
