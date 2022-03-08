@@ -8,7 +8,6 @@
 
 <main class="text-page my-searches">
 	<section class="text-area">
-		<h3>Mockup of Saved Searches page.</h3>
 		<h1>My Searches  
 		</h1>
 			
@@ -66,6 +65,7 @@
 			</a>
 		</h3>
 
+		<p><small>This page is a mockup for demo purposes.</small></p>
 	</section>
 
 </main>
