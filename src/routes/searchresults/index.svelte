@@ -28,6 +28,7 @@
 </script>
 
 <main class="search-results">
+
 	<!-- location intro -->
 	<section class="intro">
 		<div class="text-area">
@@ -53,8 +54,8 @@
 			<label for="sort-by">Sort by</label>
 			<select on:change={handleSelect} name="sort-by" id="sort-by">
 				<option value="population">Population</option>
-				<option value="temp-hottest">Hottest</option>
-				<option value="temp-coldest">Coldest</option>
+				<option value="temp-hottest">Hottest</option> <!--not yet implemented-->
+				<option value="temp-coldest">Coldest</option> <!--not yet implemented-->
 			</select>
 		</div>
 	</section>
