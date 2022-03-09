@@ -9,7 +9,7 @@ export async function getHistoricWeather(place: string) {
 	const weatherData = JSON.parse(weather.data.data);
 
 	const index = weatherData.index;
-	const readableDate = index.map((month) => {
+	const readableDate = index.map((month: number) => {
 		const intermediateDate = new Date(month * 1000);
 		return date.format(intermediateDate, 'MMM YYYY');
 	});

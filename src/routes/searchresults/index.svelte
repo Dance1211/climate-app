@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Coordinates, KGCode } from '$lib/types/kg-code';
+	import type { KGCode } from '$lib/types/kg-code';
 	import { koppenZones } from '$lib/types/kg-code';
 	import WeatherCard from '$lib/components/WeatherCard.svelte';
 	import type { City } from '$lib/types/cities';
@@ -7,7 +7,6 @@
 
 	export let kgCode: KGCode = null;
 	export let combinedData: City[];
-	export let coordinates: Coordinates;
 	export let placeName = 'placeholder';
 	export let country = 'placeholder';
 	const mapCoord = combinedData.map((data, index) => {
@@ -34,16 +33,13 @@
 		<div class="text-area">
 			<h1>
 				Places like <strong>
-					{placeName} <small>- {country}</small>
-					<!-- {coordinates} -->
+					{placeName} <small style="display: block;">- {country}</small>
 				</strong>
 			</h1>
 			<p class="climate-zone">{koppenZones[kgCode]} climate</p>
 		</div>
 	</section>
 
-	<!-- wrap rendered card in Link -->
-	<!-- pass city obj as prop -->
 	<Map cities={mapCoord} />
 
 	<section class="change-search-and-sort">
@@ -54,11 +50,8 @@
 		</p>
 
 		<div class="sort">
-			<!--currently sorted by population-->
 			<label for="sort-by">Sort by</label>
 			<select on:change={handleSelect} name="sort-by" id="sort-by">
-				<!-- <option value="distance-close">Nearest</option>
-						<option value="distance-far">Farthest</option> -->
 				<option value="population">Population</option>
 				<option value="temp-hottest">Hottest</option>
 				<option value="temp-coldest">Coldest</option>
@@ -78,10 +71,6 @@
 </main>
 
 <style>
-	/* styles used for this specific page */
-
-	/* note: may have duplicated some 'global' styles here and there (could use a clean up later), but for demo purposes who cares */
-
 	/* search results page */
 	main.search-results section {
 		/* center all 'section' elements & set widths */
@@ -137,17 +126,7 @@
 		font-size: 0.875rem; /* 14px default */
 	}
 
-	main.search-results section.results-map {
-		height: 150px;
-		display: block;
-		background-color: #dbeeff;
-		background: url('../images/search-results-dummy-map.png') center; /* delete this image when real map is in place */
-		overflow: hidden;
-		margin-bottom: 1rem;
-		max-width: none; /* override default for 'sections' & fill width */
-	}
-
-	/* search results page - change search & sorting features */
+	/* search results page */
 	main.search-results .change-search-and-sort {
 		display: grid;
 		grid-template-columns: auto auto;
@@ -210,11 +189,6 @@
 			display: grid;
 			grid-template-columns: 1fr 1fr;
 			gap: 3%;
-		}
-
-		main.search-results section.results-map {
-			/* taller map */
-			height: 275px;
 		}
 	}
 </style>

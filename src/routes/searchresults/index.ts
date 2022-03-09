@@ -3,7 +3,6 @@ import { getCitiesSimilarToLocation } from '$lib/models/cities';
 import { getWeather } from '$lib/models/weather';
 import type { City, CityDB } from '$lib/types/cities';
 import { getPhotoRef } from '$lib/models/photoreference';
-import type { Coordinates } from '$lib/types/kg-code';
 import { getNearestKGCode } from '$lib/models/kg-code';
 import { countryCode } from '$lib/types/kg-code';
 
@@ -38,7 +37,6 @@ export async function get({ url }: LoadInput) {
 	return {
 		status: 200,
 		body: {
-			coordinates: [lng, lat] as Coordinates,
 			combinedData,
 			kgCode,
 			placeName,

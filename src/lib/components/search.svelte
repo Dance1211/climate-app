@@ -37,7 +37,6 @@
 
 	// When the page loads, get the user position
 	onMount(async () => {
-		let errorBox = document.getElementById('locationError');
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(displayLocationInfo, showError);
 		}

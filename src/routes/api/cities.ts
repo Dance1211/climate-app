@@ -1,6 +1,5 @@
 import { getCitiesSimilarToLocation } from '$lib/models/cities';
 import type { CityDB } from '$lib/types/cities';
-import type { KGCode } from '$lib/types/kg-code';
 import type { LoadInput } from '@sveltejs/kit';
 
 export async function get({ url }: LoadInput) {

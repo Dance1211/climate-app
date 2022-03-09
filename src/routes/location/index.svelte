@@ -23,14 +23,13 @@
 
 			<img {src} alt={place} />
 		</div>
-
-		
 	</section>
 
 	<section class="graph-holder">
 		<div class="content">
 			<h3>Average temperature (&#8451;)</h3>
-			<!-- Imported graph stretches to 100% width -->
+
+			<!-- Graph showing historical weather data - using charts.js -->
 			<div class="TempGraph">
 				<Chart {weather} />
 			</div>
@@ -62,6 +61,10 @@
 		</div>
 
 	</section>
+
+	<a class="quick-search" title="New search" href="/">
+		<i class="searchIcon material-icons">search </i>
+	</a>
 
 
 </main>
@@ -187,7 +190,5 @@
 			grid-template-columns: 70% auto;
 			gap: 3%;
 		} */
-
-  	
 	}
 </style>

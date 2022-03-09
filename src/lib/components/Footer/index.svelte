@@ -2,7 +2,6 @@
 	import { page } from '$app/stores';
 	import Footer1Home from '$components/Footer/footer1Home.svelte';
 	import Footer2Internal from '$components/Footer/footer2Internal.svelte';
-	console.log($page.url.pathname);
 </script>
 
 {#if ($page.url.pathname === '/')}

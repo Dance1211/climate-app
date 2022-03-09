@@ -8,12 +8,8 @@
 <main class="text-page my-locations">
 	<section class="text-area">
 		<h1>My Places  
-			<!-- <span class="material-icons">
-			place
-			</span>  -->
 		</h1>
 			
-		<!-- test these URLS -->
 		<h3 class="search-item">
 
 			<a href="/location?place=cairo&country=egypt">
@@ -49,7 +45,7 @@
 			</a>
 		</h3>
 
-
+		<p><small>This page is a mockup for demo purposes.</small></p>
 	</section>
 
 </main>
