@@ -1,13 +1,13 @@
-# WhereTo. A Climate-based Travel App
+# WhereTo. A Climate-based Travel App.
 
 ![image](https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00)
 ![image](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 ![image](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
 ![image](	https://img.shields.io/badge/Chart.js-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white)
 
-## Preview
 ![whereto](https://user-images.githubusercontent.com/83911563/157258361-43ad5104-df0e-47b4-8834-5b1f34c53fba.gif)
 
+## Video Preview
 https://user-images.githubusercontent.com/68435229/157645306-b15d21bc-925b-41bf-bc9b-e6196c6c556f.mp4
 
 
@@ -43,9 +43,9 @@ An working prototype of the app can be found at: [Netlify](add link here).
 
 This is an initial prototype. The core search functionality in place, and the user can retrieve a list of search results. 
 
-Please note - the 'My Places' and 'My Locations' pages currently feature hard-coded links, or demo purposes. We would like to make this feature entirely dynamic at a later date.
+Please note - the 'My Places' and 'My Locations' pages currently feature hard-coded links, for demo purposes. We would like to make this feature entirely dynamic at a later date.
 
-Due to limits on external API requests, there may be occasional issues retrieving results from third party APIs. In which case, you can take a look at our video at the top of this page for an overview. 
+Due to limits on external API requests, there may be occasional issues retrieving results from third party APIs. In which case, you can take a look at our [video preview](#video-preview) for a general overview. 
 
 ## Further improvements
 
