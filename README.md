@@ -12,11 +12,11 @@ https://user-images.githubusercontent.com/68435229/157645306-b15d21bc-925b-41bf-
 
 ## Built by Team X
 
-- [Ben W.](https://github.com/benwestondigital)
+- [Ben Weston](https://github.com/benwestondigital)
 - [Chris H.](https://github.com/CH-DD)
-- [Elliot R.](https://github.com/ellriffs)
-- [Josh B.](https://github.com/Dance1211)
-- [Oliver J.](https://github.com/oliverj95)
+- [Elliot Robertson](https://github.com/ellriffs)
+- [Josh Banister](https://github.com/Dance1211)
+- [Oliver Jim](https://github.com/oliverj95)
 
 ## Description
 
