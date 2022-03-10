@@ -3,27 +3,32 @@ import { getCitiesSimilarToLocation } from '$lib/models/cities';
 import { getWeather } from '$lib/models/weather';
 import type { City, CityDB } from '$lib/types/cities';
 import { getPhotoRef } from '$lib/models/photoreference';
-const photoKey = import.meta.env.VITE_API_KEY;
+import { getNearestKGCode } from '$lib/models/kg-code';
+import { countryCode } from '$lib/types/kg-code';
 
 export async function get({ url }: LoadInput) {
-	const lat = +url.searchParams.get('lat') || 53.48;
 	const lng = +url.searchParams.get('lng') || 2.24;
+	const lat = +url.searchParams.get('lat') || 53.48;
+	const placeName = url.searchParams.get('destination');
+	const countryShort = url.searchParams.get('country');
 
+	const country = countryCode[countryShort];
 
 	let cities: CityDB[];
+
+	const kgCode = await getNearestKGCode([lng, lat]);
+
 	try {
-		cities = await getCitiesSimilarToLocation([lng, lat], {});
+		cities = await getCitiesSimilarToLocation([lng, lat], { limit: 9 });
 	} catch (error) {
 		console.log(error);
 	}
-
-	console.dir(cities, { depth: 3 });
 
 	const combinedData = await Promise.all(
 		cities.map(async (city) => {
 			const cityWeather = await getWeather(city.city_ascii);
 			const { photo_reference } = await getPhotoRef(city.city_ascii);
-			const src = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_reference}&key=AIzaSyDMbyra9BUhuc72_b6sb7BrtIN7RieLBUE`;
+			const src = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_reference}&key=${process.env['VITE_API_KEY']}`;
 
 			return { weather: cityWeather, details: city, src } as City;
 		})
@@ -32,7 +37,10 @@ export async function get({ url }: LoadInput) {
 	return {
 		status: 200,
 		body: {
-			combinedData
+			combinedData,
+			kgCode,
+			placeName,
+			country
 		}
 	};
 }

@@ -3,7 +3,6 @@ import { getPhotoRef } from '$lib/models/photoreference';
 import { getHistoricWeather } from '$lib/models/historicWeather';
 import { getCitiesSimilarToLocation } from '$lib/models/cities';
 import { getLatLng } from '$lib/models/getlatlng';
-const photoKey = import.meta.env.VITE_API_KEY
 
 
 export async function get({ url }: LoadInput) {
@@ -11,7 +10,7 @@ export async function get({ url }: LoadInput) {
 	const country = url.searchParams.get('country');
 	const { photo_reference, place_id } = await getPhotoRef(place);
 
-	const src = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_reference}&key=${photoKey}`;
+	const src = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_reference}&key=${process.env['VITE_API_KEY']}`;
 
 	const weather = await getHistoricWeather(place);
 
@@ -22,15 +21,13 @@ export async function get({ url }: LoadInput) {
 	const cityInfo = await Promise.all(
 		cities.map(async (city) => {
 			const { photo_reference } = await getPhotoRef(city.city_ascii);
-			const src = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_reference}&key=${photoKey}`;
+			const src = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_reference}&key=${process.env['VITE_API_KEY']}`;
 			return { src, details: city };
 		})
 	);
 
-	
-
 	return {
 		status: 200,
-		body: { src, place, country, weather, cities, cityInfo }
+		body: { src, place, country, weather, cityInfo }
 	};
 }

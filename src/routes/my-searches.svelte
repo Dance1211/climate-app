@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Footer2 from '$lib/components/footer2Internal.svelte';
+
 </script>
 
 <svelte:head>
@@ -9,14 +9,10 @@
 <main class="text-page my-searches">
 	<section class="text-area">
 		<h1>My Searches  
-			<!-- <span class="material-icons">
-			search
-			</span>  -->
 		</h1>
 			
-		<!-- test these URLS -->
 		<h3 class="search-item">
-			<a href="/searchresults?lat=30.03333&lng=31.23333&userlat=-2.24464&userlng=53.4835" title="View Search Results">
+			<a href="/searchresults?lat=30.03333&lng=31.23333&userlat=-2.24464&userlng=53.4835&destination=Cairo&country=EG" title="View Search Results">
 				<div class="like-location">
 					<span class="material-icons">search</span>
 					Places like: <strong>Cairo <small>- Egypt</small></strong> 
@@ -34,7 +30,7 @@
 		</h3>
 
 		<h3 class="search-item">
-			<a href="/searchresults?lat=67.92223&lng=26.50464&userlat=-2.24464&userlng=53.4835" title="View Search Results">
+			<a href="/searchresults?lat=67.92223&lng=26.50464&userlat=-2.24464&userlng=53.4835&destination=Lapland&country=FI" title="View Search Results">
 				<div class="like-location">
 					<span class="material-icons">search</span>
 					Places like: <strong>Lapland <small> - Finland</small></strong>
@@ -52,7 +48,7 @@
 		</h3>
 
 		<h3 class="search-item">
-			<a href="/searchresults?lat=52.52000&lng=13.40495&userlat=-2.24464&userlng=53.4835" title="View Search Results">
+			<a href="/searchresults?lat=52.52000&lng=13.40495&userlat=-2.24464&userlng=53.4835&destination=Berlin&country=DE" title="View Search Results">
 				<div class="like-location">
 					<span class="material-icons">search</span>
 					Places like: <strong>Berlin <small>- Germany</small></strong>
@@ -69,11 +65,10 @@
 			</a>
 		</h3>
 
+		<p><small>This page is a mockup for demo purposes.</small></p>
 	</section>
 
 </main>
-
-<Footer2 /><!-- this version of footer is for 'internal' pages -->
 
 <style>
 	h1 {

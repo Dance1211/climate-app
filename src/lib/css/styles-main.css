@@ -40,6 +40,9 @@ h2 {
 	font-size: 1.625rem; /* 26px default */
 	letter-spacing: -0.07rem;
 }
+h3 {
+	letter-spacing: -0.05rem;
+}
 a {
 	color: var(--col-brand-primary);
 	text-decoration: none;

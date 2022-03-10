@@ -8,6 +8,7 @@
 
 	// Input from user
 	let searchQuery: Query = { location: '', home: '' };
+	let placeName: string[] = [];
 
 	// Destination co-ords received from coordinateFetch
 	let destinationLocation: null | Coordinates = null;
@@ -19,6 +20,7 @@
 	const coordinateFetch = async (place_id: string): Promise<Coordinates> => {
 		const res = await fetch(`/api/latlng/${place_id}`);
 		const resObject = await res.json();
+		placeName = [resObject.placeName, resObject.country];
 		return resObject.coordinates;
 	};
 
@@ -26,17 +28,15 @@
 	const onConfirmSubmit = async (): Promise<void> => {
 		destinationLocation = await coordinateFetch(searchQuery.location);
 		if (destinationLocation && userLocation) {
-			const searchUrl = `/searchresults?lat=${destinationLocation[0]}&lng=${destinationLocation[1]}&userlat=${userLocation[0]}&userlng=${userLocation[1]}`;
+			const searchUrl = `/searchresults?lat=${destinationLocation[0]}&lng=${destinationLocation[1]}&userlat=${userLocation[0]}&userlng=${userLocation[1]}&destination=${placeName[0]}&country=${placeName[1]}`;
 			goto(searchUrl);
 		} else {
-			// Error handling component here
 			console.log('invalid location result');
 		}
 	};
 
 	// When the page loads, get the user position
 	onMount(async () => {
-		let errorBox = document.getElementById('locationError');
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(displayLocationInfo, showError);
 		}
