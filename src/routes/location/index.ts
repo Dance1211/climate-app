@@ -6,6 +6,7 @@ import { getLatLng } from '$lib/models/getlatlng';
 
 
 export async function get({ url }: LoadInput) {
+	try {
 	const place = url.searchParams.get('place');
 	const country = url.searchParams.get('country');
 	const { photo_reference, place_id } = await getPhotoRef(place);
@@ -30,4 +31,10 @@ export async function get({ url }: LoadInput) {
 		status: 200,
 		body: { src, place, country, weather, cityInfo }
 	};
+} catch (err) {
+	return {
+		status: err.status,
+		error: new Error('Could not fetch location page.')
+	}
+}
 }

@@ -7,6 +7,7 @@ import { getNearestKGCode } from '$lib/models/kg-code';
 import { countryCode } from '$lib/types/kg-code';
 
 export async function get({ url }: LoadInput) {
+	try {
 	const lng = +url.searchParams.get('lng') || 2.24;
 	const lat = +url.searchParams.get('lat') || 53.48;
 	const placeName = url.searchParams.get('destination');
@@ -43,4 +44,10 @@ export async function get({ url }: LoadInput) {
 			country
 		}
 	};
+} catch (err) {
+	return {
+		status: err.status,
+		error: new Error('Could not fetch search results page.')
+	}
+}
 }
