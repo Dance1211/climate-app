@@ -10,8 +10,6 @@
 ## Video Preview
 https://user-images.githubusercontent.com/68435229/157645306-b15d21bc-925b-41bf-bc9b-e6196c6c556f.mp4
 
-
-
 ## Built by Team X
 
 - [Ben W.](https://github.com/benwestondigital)
@@ -37,11 +35,11 @@ For this project we decided to use several pieces of tech that were new to the t
 - Languages: Svelte, TypeScript, CSS, JavaScript, HTML
 
 
-## Link to the demo
+## Demo
 
-An working prototype of the app can be found at: [Netlify](add link here).
+An initial working prototype of the app can be found at: [LINK](add link here).
 
-This is an initial prototype. The core search functionality in place, and the user can retrieve a list of search results. 
+The core search functionality is in place, and the user can retrieve a list of search results. 
 
 Please note - the 'My Places' and 'My Locations' pages currently feature hard-coded links, for demo purposes. We would like to make this feature entirely dynamic at a later date.
 
@@ -50,3 +48,9 @@ Due to limits on external API requests, there may be occasional issues retrievin
 ## Further improvements
 
 Whilst we are proud of what we achieved as a team in the short time frame, we have a bunch of 'desirable' refinements to both the functionality and styling that were not quite possible within the 2 weeks. Plus a series of additional features that we would like to add. 
+
+You can see some of these desirable features in our wireframes below - created early on in the project.
+![travel app_wireframe3_page1](https://user-images.githubusercontent.com/68435229/157651552-a724d83f-9927-460d-be57-4253b75c2717.jpg)
+![travel app_wireframe3_page2](https://user-images.githubusercontent.com/68435229/157651579-d259e7f0-6643-444f-9563-2639931394ea.jpg)
+![travel app_wireframe3_page3](https://user-images.githubusercontent.com/68435229/157651593-4190c926-e272-4eed-92c1-2db92452548e.jpg)
+
