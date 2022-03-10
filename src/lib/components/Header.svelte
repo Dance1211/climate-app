@@ -7,23 +7,25 @@
 	}
 </script>
 
+
 <header>
-	<h2 class="logo">
-		<a href="/" title="Home">
-			where<em>to.</em>
-		</a>
-	</h2>
-	<button class="hamburger" on:click={toggleNav}>
-		{#if !isNavOpen}
-			<i class="menuIcon material-icons"> menu </i>
-		{:else}
-			<i class="closeIcon material-icons"> close </i>
-		{/if}
-	</button>
-	<NavMenu bind:isNavOpen />
+		<h2 class="logo">
+			<a href="/" title="Home">
+				where<em>to.</em>
+			</a>
+		</h2>
+		<button class="hamburger" on:click={toggleNav}>
+			{#if !isNavOpen}
+				<i class="menuIcon material-icons"> menu </i>
+			{:else}
+				<i class="closeIcon material-icons"> close </i>
+			{/if}
+		</button>
+		<NavMenu bind:isNavOpen />
 </header>
 
 <style>
+
 	header {
 		position: fixed;
 		top: 0;
@@ -41,6 +43,7 @@
 		align-items: center;
 		height: 60px;
 	}
+
 	.logo {
 		margin-bottom: 0;
 	}
@@ -55,7 +58,7 @@
 	button.hamburger {
 		position: fixed;
 		z-index: 9999;
-		top: 1rem;
+		top: 10px;
 		right: 1rem;
 		padding: 0.5rem;
 		border: none;
@@ -72,7 +75,8 @@
 	.closeIcon {
 		color: var(--col-bg);
 	}
-
+	
+	/* --------- MEDIA QUERIES FOR LARGER DEVICES---------  */
 	@media only screen and (min-width: 768px) {
 		/* header - nav layout changes */
 		header {

@@ -8,6 +8,7 @@
 
 	// Input from user
 	let searchQuery: Query = { location: '', home: '' };
+	let placeName: string[] = [];
 
 	// Destination co-ords received from coordinateFetch
 	let destinationLocation: null | Coordinates = null;
@@ -19,6 +20,7 @@
 	const coordinateFetch = async (place_id: string): Promise<Coordinates> => {
 		const res = await fetch(`/api/latlng/${place_id}`);
 		const resObject = await res.json();
+		placeName = [resObject.placeName, resObject.country];
 		return resObject.coordinates;
 	};
 
@@ -26,17 +28,15 @@
 	const onConfirmSubmit = async (): Promise<void> => {
 		destinationLocation = await coordinateFetch(searchQuery.location);
 		if (destinationLocation && userLocation) {
-			const searchUrl = `/searchresults&lat=${destinationLocation[0]}&lng=${destinationLocation[1]}&userlat=${userLocation[0]}&userlng=${userLocation[1]}`;
+			const searchUrl = `/searchresults?lat=${destinationLocation[0]}&lng=${destinationLocation[1]}&userlat=${userLocation[0]}&userlng=${userLocation[1]}&destination=${placeName[0]}&country=${placeName[1]}`;
 			goto(searchUrl);
 		} else {
-			// Error handling component here
 			console.log('invalid location result');
 		}
 	};
 
 	// When the page loads, get the user position
 	onMount(async () => {
-		let errorBox = document.getElementById('locationError');
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(displayLocationInfo, showError);
 		}
@@ -48,19 +48,16 @@
 		function showError(error: GeolocationPositionError) {
 			switch (error.code) {
 				case error.PERMISSION_DENIED:
-					errorBox.innerHTML =
-						'User denied the request for Geolocation - default location is set to manchester.';
+                    console.log('GEOLOCATION: Location request denied by user - default location set to Manchester, UK');
 					break;
 				case error.POSITION_UNAVAILABLE:
-					errorBox.innerHTML =
-						'Location information is unavailable - default location is set to manchester.';
+                    console.log('GEOLOCATION: Location request denied by user - default location set to Manchester, UK');
 					break;
 				case error.TIMEOUT:
-					errorBox.innerHTML =
-						'The request to get user location timed out - default location is set to manchester.';
+                    console.log('GEOLOCATION: Location request timed out - default location set to Manchester, UK');
 					break;
 				default:
-					errorBox.innerHTML = 'An unknown error occurred - default location is set to manchester.';
+                    console.log('GEOLOCATION: An unknown location error occurred');
 					break;
 			}
 		}
@@ -68,11 +65,11 @@
 </script>
 
 <svelte:head>
-	<title>Climate Travel App</title>
+	<title>WhereTo. Compare travel destinations by climate.</title>
 </svelte:head>
 
 <section class="container">
-	<h2 class="header">Compare travel destinations by climate.</h2>
+	<h1 class="header">Compare travel destinations by climate.</h1>
 
 	<!-- Input form -->
 	<form class="search-form" on:submit|preventDefault={onConfirmSubmit}>
@@ -88,7 +85,7 @@
 
 		<label for="home">
 			My location is
-			<LocationSearch placeholder="City or town..." id="home" bind:placeId={searchQuery.home} />
+			<LocationSearch placeholder="Manchester, UK (default)" id="home" bind:placeId={searchQuery.home} />
 		</label>
 		<button class="search-button" disabled={!searchQuery.location} type="submit">
 			<i class="searchIcon material-icons">search</i> Search
@@ -111,31 +108,35 @@
 		text-align: center;
 		margin: 30px auto 0 auto; /* align to center vertically */
 	}
-
 	.header {
 		margin-bottom: 1rem;
 	}
-
 	.search-button {
 		display: grid;
 		grid-template-columns: auto auto;
 		align-items: center;
 		text-align: left;
 	}
-
 	.search-button i {
 		text-align: right;
 		margin-right: 5px;
 	}
+    /* form spacing issues - quick fix */
+	label {
+		line-height: 2;
+	}
 
-	/* .warning {
-		color: red;
-	} */
+    /* Location error */
+	#locationError {
+		font-size: 10px;
+		color: #666;
+		margin-top: 0.5rem;
+	}
 
 	/* home - search box - increase heading size */
 	@media only screen and (min-width: 768px) {
-		h2 {
-			font-size: 38px;
+		h1 {
+			font-size: 2.375rem; /* 38px default */
 			margin-bottom: 2rem;
 		}
 	}

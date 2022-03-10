@@ -12,13 +12,14 @@ export async function get({ params }) {
 			}
 		});
 
+		const placeName = res.data.results[0].address_components[0].long_name;
 		const address = res.data.results[0].address_components;
-		const [country] = address.filter((place) => place.types.includes('country'));
+		const [country] = address.filter((place: { types: string | string[]; }) => place.types.includes('country'));
 		const lat = +res.data.results[0].geometry.location.lat.toFixed(5);
 		const lng = +res.data.results[0].geometry.location.lng.toFixed(5);
 		return {
 			status: 200,
-			body: { coordinates: [lat, lng], country: country.short_name }
+			body: { coordinates: [lat, lng], country: country.short_name, placeName }
 		};
 	} catch (err) {
 		return {
@@ -26,6 +27,7 @@ export async function get({ params }) {
 			body: {
 				err
 			}
-		};
+		}
 	}
+
 }
