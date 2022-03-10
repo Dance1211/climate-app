@@ -12,15 +12,32 @@
 	export let error;
 </script>
 
-<div class="error">
-    <h1>Oops!</h1>
-	<h2>Sorry, we couldn't load this page.</h2>
-	<a href="/">Return to homepage and try again</a>
-</div>
+<svelte:head>
+	<title>Error | WhereTo.</title>
+</svelte:head>
+
+<main class="text-page">
+	<section class="text-area">
+		
+		<p class="error">
+			<span class="material-icons"><span class="material-icons">
+				outlet
+				</span></span>
+		</p>
+		<h1>Oops!</h1>
+		<h3>Sorry, but we couldn't load this page.</h3>
+		
+		<p><a href="/">Go to homepage and try again.</a></p>
+	</section>
+</main>
 
 <style>
-    .error {
-        margin-top: 6em;
-        text-align: center;
-    }
+	section.text-area { 
+		text-align: center; 
+		margin: 0 auto;
+	}
+	p.error span.material-icons {
+		font-size: 180px;
+		color: #cccccc;
+	}
 </style>
