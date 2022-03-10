@@ -1,6 +1,6 @@
 import type { CityDB } from '$lib/types/cities';
 import type { Coordinates, KGCode, KGCodeDB } from '$lib/types/kg-code';
-import _kgSeedData from './Koeppen-Geiger-Data.json';
+import _kgSeedData from './KoeppenGeiger-Data.json';
 import _citySeedData from './worldcities.json';
 
 type KGImport = {
