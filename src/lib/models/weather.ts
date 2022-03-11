@@ -26,7 +26,7 @@ export async function getWeather(city: string) {
 		} as CityWeather;
 		
 	} catch (err) {
-		console.log(err);
+		console.log(`Weather data for ${city} not found, returned placeholder data.`);
 		return {
 			name: 'placeholder',
 			temp: 1,
