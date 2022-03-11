@@ -12,7 +12,7 @@
 
 ## Video Preview
 
-![Watch the walk-through (1:39)](https://user-images.githubusercontent.com/68435229/157645306-b15d21bc-925b-41bf-bc9b-e6196c6c556f.mp4)
+[Watch the walk-through (1:39)](https://user-images.githubusercontent.com/68435229/157645306-b15d21bc-925b-41bf-bc9b-e6196c6c556f.mp4)
 
 ## Built by Team X
 
