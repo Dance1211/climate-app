@@ -12,7 +12,7 @@
 
 ## Video Previews
 
-![App overview (1:39)](https://user-images.githubusercontent.com/68435229/157645306-b15d21bc-925b-41bf-bc9b-e6196c6c556f.mp4)
+[App overview (1:39)](https://user-images.githubusercontent.com/68435229/157645306-b15d21bc-925b-41bf-bc9b-e6196c6c556f.mp4)
 
 [Project case study (5:00 - YouTube link)](https://www.youtube.com/watch?v=xmu_EPWvjPU)
 
@@ -38,7 +38,7 @@ For this project we decided to use several pieces of tech that were new to the t
 - Back End: [SvelteKit framework](https://kit.svelte.dev/)
 - Database: [MongoDB](https://www.mongodb.com/)
 - APIs: [Google Places API](https://developers.google.com/maps/documentation/places/web-service/overview), [OpenWeatherMap API](https://openweathermap.org/api), [Okiolab Weather Data API](https://oikolab.com/api-details#api=weather&operation=weather-data)
-- Languages: Svelte, TypeScript, CSS, JavaScript, HTML
+- Languages: TypeScript,JavaScript, CSS, HTML
 
 ## Run the App Locally
 
