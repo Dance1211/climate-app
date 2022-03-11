@@ -57,7 +57,6 @@ const formatCityData = ({
 	iso3,
 	population
 }): CityDB => {
-	// console.log(round(lat), round(lng));
 	return {
 		location: { type: 'Point', coordinates: [lng, lat] },
 		city,
