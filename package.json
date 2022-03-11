@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "svelte-kit dev",
+    "start": "node build/index.js",
     "build": "svelte-kit build",
     "package": "svelte-kit package",
     "preview": "svelte-kit preview",
@@ -11,6 +12,10 @@
     "lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
     "format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. ."
   },
+  "engines": {    
+    "node": "16.x",
+    "npm": "8.x"
+},
   "devDependencies": {
     "@rollup/plugin-replace": "^3.1.0",
     "@sveltejs/adapter-auto": "next",
@@ -36,6 +41,7 @@
   "type": "module",
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.0.0",
+    "@sveltejs/adapter-node": "^1.0.0-next.71",
     "axios": "^0.26.0",
     "chart.js": "^3.7.1",
     "date-and-time": "^2.2.1",
