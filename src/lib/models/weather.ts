@@ -14,7 +14,7 @@ export async function getWeather(city: string) {
 		const humidity = res.data.main.humidity;
 		const wind = Math.round(res.data.wind.speed);
 		const description = res.data.weather[0].description;
-		const icon = `http://openweathermap.org/img/wn/${iconString}@2x.png`;
+		const icon = `https://openweathermap.org/img/wn/${iconString}@2x.png`;
 
 		return {
 			name: location,
@@ -33,7 +33,7 @@ export async function getWeather(city: string) {
 			humidity: 1,
 			wind: 1,
 			description: 'placeholder due to weather API error',
-			icon: 'http://openweathermap.org/img/wn/04d@2x.png'
+			icon: 'https://openweathermap.org/img/wn/04d@2x.png'
 		};
 	}
 }
