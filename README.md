@@ -38,7 +38,7 @@ For this project we decided to use several pieces of tech that were new to the t
 - Back End: [SvelteKit framework](https://kit.svelte.dev/)
 - Database: [MongoDB](https://www.mongodb.com/)
 - APIs: [Google Places API](https://developers.google.com/maps/documentation/places/web-service/overview), [OpenWeatherMap API](https://openweathermap.org/api), [Okiolab Weather Data API](https://oikolab.com/api-details#api=weather&operation=weather-data)
-- Languages: TypeScript,JavaScript, CSS, HTML
+- Languages: Svelte, TypeScript,JavaScript, CSS, HTML
 
 ## Run the App Locally
 
