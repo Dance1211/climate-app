@@ -27,7 +27,10 @@
 				target="_blank">Northcoders</a
 			> Coding Bootcamp. This was their first time working as a group.
 		</p>
-		<p>Development took place over 8-9 days in February-March 2022.</p>
+		<p>Development took place over a couple of weeks in February-March 2022.</p>You can find out more in the project's <a
+		href="https://github.com/Dance1211/climate-app"
+		target="_blank">GitHub repo</a>.
+		<p></p>
 
 		<h1>How's it built?</h1>
 		<p>
@@ -56,8 +59,11 @@
 			forecast data.
 		</p>
 		<p>
-			<a href="https://www.amcharts.com/" target="_blank">amCharts</a> - for the animated weather icons.
+			<a href="https://oikolab.com/api-details#api=weather&operation=weather-data" target="_blank">Okiolab Weather Data API</a> - for providing historical weather data.
 		</p>
+		<!-- <p>
+			<a href="https://www.amcharts.com/" target="_blank">amCharts</a> - for the animated weather icons.
+		</p> -->
 		<p>
 			<a href="https://www.chartjs.org/" target="_blank">Chart.js</a> - for helping our charts look nice.
 		</p>
