@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Chart, { type ChartItem } from 'chart.js/auto';
+	import Chart, { type ChartItem } from 'chart.js/auto/auto.js';
 	import { onMount } from 'svelte';
 	export let weather: any[];
 	let ctx: ChartItem;
