@@ -8,7 +8,7 @@
 		{year}
 		Team X <span class="divider">|</span>
 		<a href="/about" title="About the app">about & credits</a> <span class="divider">|</span>
-		<a href="/seed" title="Seed the Database">seeding</a>
+		<!-- <a href="/seed" title="Seed the Database">seeding</a> -->
 	</p>
 </footer>
 
