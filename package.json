@@ -23,7 +23,6 @@
     "@types/google.maps": "^3.47.4",
     "@typescript-eslint/eslint-plugin": "^5.10.1",
     "@typescript-eslint/parser": "^5.10.1",
-    "dotenv": "^16.0.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-svelte3": "^3.2.1",
@@ -41,6 +40,7 @@
   "type": "module",
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.0.0",
+    "dotenv": "^16.0.0",
     "@sveltejs/adapter-node": "^1.0.0-next.71",
     "axios": "^0.26.0",
     "chart.js": "^3.7.1",
