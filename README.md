@@ -10,9 +10,11 @@
 
 ![whereto](https://user-images.githubusercontent.com/83911563/157258361-43ad5104-df0e-47b4-8834-5b1f34c53fba.gif)
 
-## Video Preview
+## Video Previews
 
-[Watch the walk-through (1:39)](https://user-images.githubusercontent.com/68435229/157645306-b15d21bc-925b-41bf-bc9b-e6196c6c556f.mp4)
+![App overview (1:39)](https://user-images.githubusercontent.com/68435229/157645306-b15d21bc-925b-41bf-bc9b-e6196c6c556f.mp4)
+
+[Project case study (5:00 - YouTube link)](https://www.youtube.com/watch?v=xmu_EPWvjPU)
 
 ## Built by Team X
 
@@ -37,17 +39,6 @@ For this project we decided to use several pieces of tech that were new to the t
 - Database: [MongoDB](https://www.mongodb.com/)
 - APIs: [Google Places API](https://developers.google.com/maps/documentation/places/web-service/overview), [OpenWeatherMap API](https://openweathermap.org/api), [Okiolab Weather Data API](https://oikolab.com/api-details#api=weather&operation=weather-data)
 - Languages: Svelte, TypeScript, CSS, JavaScript, HTML
-
-
-## Live Demo
-
-An initial prototype of the app can be found at: [LINK](add link here).
-
-The core search functionality is in place, meaning that the user can retrieve a list of search results, and explore potential destinations.
-
-Please note - the 'My Places' and 'My Searches' pages currently feature hard-coded links for demo purposes. We would like to make this feature entirely dynamic at a later date.
-
-Due to limits on external API requests, there may be occasional issues retrieving results from third party APIs. In which case, you can take a look at our [video preview](#video-preview) for a quick overview. Alternatively (if feeling adventurous), you can [run the app locally](#run-the-app-locally).
 
 ## Run the App Locally
 
@@ -119,6 +110,14 @@ It may take a while to load this page - and then to populate your database. You 
 Once the above steps are complete, the app can by run locally and viewed in your web browser with:
 
 `npm run dev -- --open`
+
+## Functionality
+
+The core search functionality is in place, meaning that the user can retrieve a list of search results, and explore potential destinations.
+
+Please note - the 'My Places' and 'My Searches' pages currently feature hard-coded links for demo purposes. We would like to make this feature entirely dynamic at a later date.
+
+Due to limits on external API requests, there may be occasional issues retrieving results from third party APIs. In which case, you may need to double-check you have not exceeded your limits. You can also take a look at our [video previews](#video-previews) to see the project in action.
 
 ## Further Development
 
