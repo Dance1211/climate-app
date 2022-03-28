@@ -30,6 +30,8 @@ This web app was completed over a 2 week period in early 2022, as a final group 
 
 The app uses a non-relational database to store information about the climate zones and destinations, along with their corresponding latitude/longitude values. External APIs are used to grab relevant pictures, the current weather, and historical weather patterns.
 
+Visit the [Northcoders Project Showcase](https://northcoders.com/projects/march-2022/whereto).
+
 ### Technology Used
 
 For this project we decided to use several pieces of tech that were new to the team, embracing technology rated highly by developers at the time - in addition to the fundamentals that we had been learning and refining throughout bootcamp.
@@ -38,7 +40,7 @@ For this project we decided to use several pieces of tech that were new to the t
 - Back End: [SvelteKit framework](https://kit.svelte.dev/)
 - Database: [MongoDB](https://www.mongodb.com/)
 - APIs: [Google Places API](https://developers.google.com/maps/documentation/places/web-service/overview), [OpenWeatherMap API](https://openweathermap.org/api), [Okiolab Weather Data API](https://oikolab.com/api-details#api=weather&operation=weather-data)
-- Languages: Svelte, TypeScript,JavaScript, CSS, HTML
+- Languages: Svelte, TypeScript, JavaScript, CSS, HTML
 
 ## Run the App Locally
 
@@ -128,3 +130,5 @@ You can see some of these desirable features in our wireframes below - created e
 ![travel app_wireframe3_page1](https://user-images.githubusercontent.com/68435229/157651552-a724d83f-9927-460d-be57-4253b75c2717.jpg)
 ![travel app_wireframe3_page2](https://user-images.githubusercontent.com/68435229/157651579-d259e7f0-6643-444f-9563-2639931394ea.jpg)
 ![travel app_wireframe3_page3](https://user-images.githubusercontent.com/68435229/157651593-4190c926-e272-4eed-92c1-2db92452548e.jpg)
+
+
